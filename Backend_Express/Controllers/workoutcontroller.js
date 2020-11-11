@@ -6,15 +6,17 @@ const bcrypt = require('bcrypt');
 //Get for all workouts (List of all workoutprograms)
 module.exports.workoutList = async function(req, res){
     const workouts = await WorkoutList.find({}).catch(reason => res.render("error", reason));
-    res.render("workoutlist", {title: "Workoutprogram list", workouts})
+    //res.render("workoutlist", {title: "Workoutprogram list", workouts})
+    res.send(workouts);
 }
 
 //Create workoutprogram
 module.exports.createworkout = async function(req, res) {
     var workout = await WorkoutList.create({name: req.body.name}).catch(reason => res.render("error", reason));
-    if(workout){
-        res.redirect('//localhost:8080/workouts/workoutlist')
-    }
+    //if(workout){
+    //    res.redirect('//localhost:8080/workouts/workoutlist')
+    //}
+    res.sendStatus(200);
 }
 
 //Create Exercise

@@ -21,7 +21,8 @@ module.exports.AddUser = async function(req, res){
 //GET - get all users
 module.exports.GetUsers = async function(req, res){
     const users = await UserList.find({}).catch(reason => res.render("error", reason));
-    res.render('UserList', {title: 'User list', users});
+    //res.render('UserList', {title: 'User list', users});
+    res.send(users);
 }
 
 //login
