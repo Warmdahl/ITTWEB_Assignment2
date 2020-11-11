@@ -1,18 +1,34 @@
 import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {catchError, map, tap} from 'rxjs/operators';
+import {Workout} from './Interfaces/workout';
+import {Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiWorkoutService {
 
-  constructor() { }
+  apiurl = 'http://localhost:8080/workouts/wourkoutlist'
+  constructor(
+    private http: HttpClient
+  ) { }
 
-  getWorkoutList(){
-    /*fetch(this.apiurl, {
-      method: 'GET',
-      headers: new Headers({
-        'content-Type': 'application/json'
-      })
-    }).then(res => this.workoutList = res.json())*/
+  getWorkoutList(): Observable<Workout[]> {
+    return this.http.get<Workout[]>(this.apiurl)
+    .pipe(
+      tap(_ => console.log("WorkoutList fetched")),
+      catchError(this.handleError<Workout[]>('getWorkoutList', []))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+
+      console.log(`${operation} failed: ${error.message}`);
+
+      return of(result as T);
+    }
   }
 }
