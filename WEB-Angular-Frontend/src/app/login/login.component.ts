@@ -18,8 +18,12 @@ export class LoginComponent implements OnInit {
   users: User[]; //<---- Array of users, internal use
 
   //Get function to see all users in the system
+  /*getUsers(): void {
+    this.userService.getUsers().subscribe(response => this.users = response.users)
+  }*/
+
   getUsers(): void {
-    this.userService.getUsers().subscribe(users => this.users = users)
+    this.userService.getUsers().subscribe(response => this.users = response)
   }
 
   //What happens when cancel btn is pressed

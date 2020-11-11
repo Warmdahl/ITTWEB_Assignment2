@@ -1,6 +1,13 @@
 var mongoose = require('mongoose')
 const UserList = mongoose.model('User')
 const bcrypt = require('bcrypt');
+/*var request = require('request');
+
+var apiOptions = {server: "http://localhost:8080"};
+
+if (process.env.NODE_ENV === 'production') {
+    apiOptions.server = "https://backend-express-assignment2.herokuapp.com/"
+}*/
 
 module.exports.AddUserForm = function(req, res){
     res.render('createuser', {title: 'createuser'})
@@ -22,7 +29,12 @@ module.exports.AddUser = async function(req, res){
 module.exports.GetUsers = async function(req, res){
     const users = await UserList.find({}).catch(reason => res.render("error", reason));
     //res.render('UserList', {title: 'User list', users});
-    res.send(users);
+    //res.send(users);
+    if(res.status(200)){
+        res.send(users);
+    }
+    //res.json(users);
+    //res.json({"test":"test"});
 }
 
 //login

@@ -1,5 +1,13 @@
 <h2>login works!</h2>
 <div>
+    <label>
+        Username: <input #userName />
+    </label>
     <button (click)="login()">Login</button>
-    <button (click)="goBack()">Cancel</button>
 </div>
+<button (click)="goBack()">Cancel</button>
+<ul class="users">
+    <li *ngFor="let user of users">
+        <p>{{user.username}} and {{user.password}}</p>
+    </li>
+</ul>
