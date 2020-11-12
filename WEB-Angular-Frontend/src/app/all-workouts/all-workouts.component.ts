@@ -18,7 +18,7 @@ export class AllWorkoutsComponent implements OnInit {
   ngOnInit(): void {
     this.getWorkouts();
     if(localStorage.getItem("JWT")==null){
-      this.loggedin=false
+      this.loggedin=true
     }else{
       this.loggedin=true
     }
@@ -27,6 +27,18 @@ export class AllWorkoutsComponent implements OnInit {
   getWorkouts(): void{
     this.workoutService.getWorkoutList()
       .subscribe(workouts => this.workoutList = workouts);
+  }
+
+  login(){
+
+  }
+
+  Add(){
+
+  }
+
+  gotoWO(){
+    
   }
 
 }
