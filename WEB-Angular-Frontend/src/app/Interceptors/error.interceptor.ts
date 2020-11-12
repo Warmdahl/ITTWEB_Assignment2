@@ -3,7 +3,9 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { AuthenticationService } from '../Services/authentication';
+import { AuthenticationService } from '../Services/authentication.service';
+
+// Insperation form https://jasonwatmore.com/post/2019/06/10/angular-8-user-registration-and-login-example-tutorial#alert-service-ts
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

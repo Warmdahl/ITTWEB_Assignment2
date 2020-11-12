@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AuthenticationService } from '../Services/authentication';
+import { AuthenticationService } from '../Services/authentication.service';
 
 // Insperation form https://jasonwatmore.com/post/2019/06/10/angular-8-user-registration-and-login-example-tutorial#alert-service-ts
 
