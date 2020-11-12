@@ -9,6 +9,7 @@ import { AllWorkoutsComponent } from './all-workouts/all-workouts.component';
 import { WorkoutDetailsComponent } from './workout-details/workout-details.component';
 import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 import { AddActivityComponent } from './add-activity/add-activity.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddActivityComponent } from './add-activity/add-activity.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
