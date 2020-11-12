@@ -11,6 +11,7 @@ import { Workout } from '../../Interfaces/workout';
 export class WorkoutDetailsComponent implements OnInit {
 
   workout: Workout
+  public id=""
   constructor(
     private route: ActivatedRoute,
     private workoutService: ApiWorkoutService
@@ -21,7 +22,7 @@ export class WorkoutDetailsComponent implements OnInit {
   }
 
   getWorkout(): void{
-    const id = +this.route.snapshot.paramMap.get('id')
+    const id: String = this.route.snapshot.paramMap.get('id').toString()
     this.workoutService.getWorkout(id)
     .subscribe(workout => this.workout = workout)
   }

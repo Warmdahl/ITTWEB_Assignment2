@@ -10,7 +10,7 @@ import { WorkoutDetailsComponent } from '../app/Components/workout-details/worko
 const routes: Routes = [
   {path: 'addactivity', component: AddActivityComponent},
   {path: 'addexercise', component: AddExerciseComponent},
-  {path: 'allworkouts', component: AllWorkoutsComponent},
+  {path: '', component: AllWorkoutsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'workoutdetail/:id', component: WorkoutDetailsComponent}
 ]

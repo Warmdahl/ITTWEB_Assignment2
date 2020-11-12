@@ -31,8 +31,12 @@ export class ApiWorkoutService {
     );
   }
   
-  getWorkout(id: Number): Observable<Workout> {
-    return this.http.get<Workout>(this.apiurl+"/showexcinwok/{{id}}")
+  getWorkout(id: String): Observable<Workout> {
+    
+    return this.http.get<Workout>(this.apiurl+"/showexcinwok/"+id)
+    .pipe(
+      catchError(this.handleError<Workout>('getWorkout'))
+    )
   }
 
   httpOptions = {

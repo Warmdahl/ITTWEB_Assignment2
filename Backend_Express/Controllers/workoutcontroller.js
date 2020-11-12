@@ -40,10 +40,12 @@ module.exports.createExercise = async function(req, res) {
 
 //Show all exercises in a workoutprogram
 module.exports.showExcinWok = async function(req, res){
-    var workoutprogram = await WorkoutList.findOne({_id: req.params.id}).catch(reason => res.render("error", reason));
+    id = req.params.id
+    console.log(id)
+    var workoutprogram = await WorkoutList.findOne({_id: id}).catch(reason => res.render("error", reason));
     
     if(workoutprogram){
-        res.render('workout', {title: 'Someones program', workoutprogram})
+        res.send(workoutprogram)
     }
 }
 
