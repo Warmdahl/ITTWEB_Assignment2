@@ -9,7 +9,8 @@ import {Observable, of} from 'rxjs';
 })
 export class ApiWorkoutService {
 
-  apiurl = 'https://backend-express-assignment2.herokuapp.com/workouts/workoutlist'
+  private apiurl = 'http://localhost:8080/workouts/workoutlist'
+  //private apiurl = 'https://backend-express-assignment2.herokuapp.com/workouts/workoutlist'
   constructor(
     private http: HttpClient
   ) { }

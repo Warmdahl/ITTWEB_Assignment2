@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; //NgModels
-import {HttpClientModule} from '@angular/common/http' //More HTTP
+import { HttpClientModule } from '@angular/common/http'; //HTTP
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';

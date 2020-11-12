@@ -8,7 +8,7 @@ module.exports.workoutList = async function(req, res){
     const workouts = await WorkoutList.find({}).catch(reason => res.sed("error"));
     //res.render("workoutlist", {title: "Workoutprogram list", workouts})
     console.log("test");
-    res.send(JSON.stringify(workouts));
+    res.send(workouts);
 }
 
 //Create workoutprogram

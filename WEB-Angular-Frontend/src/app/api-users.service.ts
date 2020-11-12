@@ -14,12 +14,21 @@ export class ApiUsersService {
   // Change to Heroku call later
   // When API is installed on Heroku
   //***************************************//
-  private userUrl = 'http://localhost:8080/users/getusers';
+  //private baseUserUrl = 'https://backend-express-assignment2.herokuapp.com/'
+  private baseUserUrl = 'http://localhost:8080/'
+  //private baseUserUrl = 'https://localhost:8080/'
 
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
 
+  /*
+  getUsers(): Observable<{users: User[]}> {
+    const usersUrl = `${this.baseUserUrl}users/getusers`
+    return this.http.get<{ users: User[] }>(usersUrl).pipe(catchError(this.handleError<{users: User[]}>('getUsers', )));
+  }*/
+
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl).pipe(catchError(this.handleError<User[]>('getUsers', [])));
+    const usersUrl = `${this.baseUserUrl}users/getusers`
+    return this.http.get<User[]>(usersUrl).pipe(catchError(this.handleError<User[]>('getUsers', )));
   }
 
   //Handle Error function
