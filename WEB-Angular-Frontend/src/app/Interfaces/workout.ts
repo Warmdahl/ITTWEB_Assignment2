@@ -1,4 +1,5 @@
 export interface Workout {
+    _id: String,
     name: String,
     exercises: {
         type: [{name: String,

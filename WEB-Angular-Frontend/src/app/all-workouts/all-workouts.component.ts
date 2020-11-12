@@ -10,6 +10,7 @@ import { Workout } from '../Interfaces/workout'
 export class AllWorkoutsComponent implements OnInit {
   workoutList: Workout[]
   loggedin = false
+  tempWorkout: Workout
 
   constructor(
     private workoutService: ApiWorkoutService
@@ -33,12 +34,14 @@ export class AllWorkoutsComponent implements OnInit {
 
   }
 
-  Add(){
-
+  add(name: String): void{
+    this.workoutService.createWorkout({name} as Workout)
+    .subscribe(workout => {this.tempWorkout = workout})
+    
   }
 
   gotoWO(){
-    
+
   }
 
 }

@@ -17,6 +17,7 @@ module.exports.createworkout = async function(req, res) {
     //if(workout){
     //    res.redirect('//localhost:8080/workouts/workoutlist')
     //}
+    console.log(workout.name);
     res.sendStatus(200);
 }
 
@@ -39,7 +40,7 @@ module.exports.createExercise = async function(req, res) {
 
 //Show all exercises in a workoutprogram
 module.exports.showExcinWok = async function(req, res){
-    var workoutprogram = await WorkoutList.findOne({name: req.params.id}).catch(reason => res.render("error", reason));
+    var workoutprogram = await WorkoutList.findOne({_id: req.params.id}).catch(reason => res.render("error", reason));
     
     if(workoutprogram){
         res.render('workout', {title: 'Someones program', workoutprogram})

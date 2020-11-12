@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApiWorkoutService } from '../api-workout.service';
+import { Workout } from '../Interfaces/workout';
 
 @Component({
   selector: 'app-workout-details',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkoutDetailsComponent implements OnInit {
 
-  constructor() { }
+  workout: Workout
+  constructor(
+    private route: ActivatedRoute,
+    private workoutService: ApiWorkoutService
+  ) { }
 
   ngOnInit(): void {
+    this.getWorkout()
+  }
+
+  getWorkout(): void{
+    const id = +this.route.snapshot.paramMap.get('id')
+    this.workoutService.getWorkout(id)
+    .subscribe(workout => this.workout = workout)
   }
 
 }
