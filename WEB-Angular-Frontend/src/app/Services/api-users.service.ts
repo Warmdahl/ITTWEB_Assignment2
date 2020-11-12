@@ -23,6 +23,14 @@ export class ApiUsersService {
     return this.http.get<User[]>(usersUrl).pipe(catchError(this.handleError<User[]>('getUsers', )));
   }
 
+  addUser(username: string, password: string): Observable<User> {
+    return this.http.post<User>(`${this.baseUserUrl}users/adduser`, {username, password})
+  }
+
+  deleteUser(id: number) {
+
+  }
+
   //Handle Error function
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

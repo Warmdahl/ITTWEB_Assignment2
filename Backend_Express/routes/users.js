@@ -14,7 +14,7 @@ router.post('/adduser', usercontroller.AddUser)
 //Login
 router.post('/userlogin', usercontroller.UserLogIn)
 
-//Delete user in db
+//Delete users in db
 router.post('/deleteusers', usercontroller.deleteusers)
 
 

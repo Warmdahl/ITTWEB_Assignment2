@@ -15,13 +15,17 @@ module.exports.AddUserForm = function(req, res){
 
 //POST - add user to db
 module.exports.AddUser = async function(req, res){
+    /*const user = await UserList.find({username: req.body.username}).catch(reason => res.render("error", reason));
+    if(user){
+        res.render("NO!");
+    }*/
+
     var saltrounds = 10;
-    var password;
     bcrypt.hash(req.body.password, saltrounds).then(async function(hash) {
         var user = await UserList.create({username: req.body.username, password: hash}).catch(reason => res.render("error", reason));
         if(user){
-            res.redirect('//localhost:8080/')
-        }    
+            res.send(user);
+        }   
     })
 }
 
@@ -58,7 +62,7 @@ module.exports.UserLogIn = async function(req, res) {
     } 
 }
 
-//Delete users in DB
+//Delete all users in DB
 module.exports.deleteusers = async function(req, res){
     const users = await UserList.find({}).catch(reason => res.render("error", reason));
     if(users != 0){
@@ -70,7 +74,7 @@ module.exports.deleteusers = async function(req, res){
     }
 }
 
-//Delete users in DB
+//Delete a user in DB
 module.exports.deleteusers = async function(req, res){
     const users = await UserList.find({}).catch(reason => res.render("error", reason));
     if(users != 0){
