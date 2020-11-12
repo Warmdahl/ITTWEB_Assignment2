@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; //NgModels
-import {HttpClient, HttpHeaders} from '@angular/common/http'; //HTTP
 import {HttpClientModule} from '@angular/common/http' //More HTTP
 
 import { AppComponent } from './app.component';
@@ -23,8 +22,6 @@ import { AddActivityComponent } from './add-activity/add-activity.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClient,
-    HttpHeaders,
     HttpClientModule
   ],
   providers: [],

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Workout} from './Interfaces/workout';
 import {Observable, of} from 'rxjs';
@@ -9,7 +9,7 @@ import {Observable, of} from 'rxjs';
 })
 export class ApiWorkoutService {
 
-  apiurl = 'http://localhost:8080/workouts/wourkoutlist'
+  apiurl = 'https://backend-express-assignment2.herokuapp.com/workouts/workoutlist'
   constructor(
     private http: HttpClient
   ) { }
@@ -24,9 +24,9 @@ export class ApiWorkoutService {
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+      //console.error(error);
 
-      console.log(`${operation} failed: ${error.message}`);
+      //console.log(`${operation} failed: ${error.message}`);
 
       return of(result as T);
     }

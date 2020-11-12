@@ -5,9 +5,10 @@ const bcrypt = require('bcrypt');
 
 //Get for all workouts (List of all workoutprograms)
 module.exports.workoutList = async function(req, res){
-    const workouts = await WorkoutList.find({}).catch(reason => res.render("error", reason));
+    const workouts = await WorkoutList.find({}).catch(reason => res.sed("error"));
     //res.render("workoutlist", {title: "Workoutprogram list", workouts})
-    res.send(workouts);
+    console.log("test");
+    res.send(JSON.stringify(workouts));
 }
 
 //Create workoutprogram
