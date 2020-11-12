@@ -23,13 +23,6 @@ export class ApiUsersService {
     return this.http.get<User[]>(usersUrl).pipe(catchError(this.handleError<User[]>('getUsers', )));
   }
 
-  login(user: User): Observable<User> {
-    //loginuser = new user{};
-    //const loginUrl = `${this.baseUserUrl}users/userlogin/${loginuser}`;
-    
-    return null;
-  } 
-
   //Handle Error function
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
