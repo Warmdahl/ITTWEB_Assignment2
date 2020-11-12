@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from './Interfaces/user';
+import { User } from '../Interfaces/user';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -14,22 +14,21 @@ export class ApiUsersService {
   // Change to Heroku call later
   // When API is installed on Heroku
   //***************************************//
-  //private baseUserUrl = 'https://backend-express-assignment2.herokuapp.com/'
   private baseUserUrl = 'http://localhost:8080/'
-  //private baseUserUrl = 'https://localhost:8080/'
 
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
-
-  /*
-  getUsers(): Observable<{users: User[]}> {
-    const usersUrl = `${this.baseUserUrl}users/getusers`
-    return this.http.get<{ users: User[] }>(usersUrl).pipe(catchError(this.handleError<{users: User[]}>('getUsers', )));
-  }*/
 
   getUsers(): Observable<User[]> {
     const usersUrl = `${this.baseUserUrl}users/getusers`
     return this.http.get<User[]>(usersUrl).pipe(catchError(this.handleError<User[]>('getUsers', )));
   }
+
+  login(user: User): Observable<User> {
+    //loginuser = new user{};
+    //const loginUrl = `${this.baseUserUrl}users/userlogin/${loginuser}`;
+    
+    return null;
+  } 
 
   //Handle Error function
   private handleError<T>(operation = 'operation', result?: T) {

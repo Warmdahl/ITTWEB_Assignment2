@@ -2,12 +2,16 @@
 <div>
     <label>
         Username: <input #userName />
+        Password: <input #passWord />
     </label>
-    <button (click)="login()">Login</button>
+    <button (click)="login(userName.value, passWord.value); userName.value='' ">Login</button>
 </div>
 <button (click)="goBack()">Cancel</button>
+
+<!--
 <ul class="users">
     <li *ngFor="let user of users">
         <p>{{user.username}} and {{user.password}}</p>
     </li>
 </ul>
+-->
