@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { User } from '../Interfaces/user';
 import { ApiUsersService } from '../api-users.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: ApiUsersService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) { }
 
   users: User[]; //<---- Array of users, internal use
