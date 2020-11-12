@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { User } from '../Interfaces/user';
-import { ApiUsersService } from '../api-users.service';
+import { ApiUsersService } from '../Services/api-users.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -18,12 +18,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   users: User[]; //<---- Array of users, internal use
+  loginUser: User;
 
-  //Get function to see all users in the system
-  /*getUsers(): void {
-    this.userService.getUsers().subscribe(response => this.users = response.users)
-  }*/
-
+  //get function of all users in the DB - just used to check
   getUsers(): void {
     this.userService.getUsers().subscribe(response => this.users = response)
   }
@@ -34,7 +31,14 @@ export class LoginComponent implements OnInit {
   }
 
   //What happens when login btn is pressed
-  login(): void {
+  login(username: string, password: string): void {
+    username = username.trim();
+    if(!username) {return; }
+
+    this.loginUser.username = username;
+    this.loginUser.password = password;
+
+    //this.userService.login(this.loginUser).subscribe(response => {this.users.push(this.loginUser)});
     this.location.back();
   }
 
