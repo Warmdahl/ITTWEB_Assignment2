@@ -2,5 +2,11 @@
 <ul class="workouts">
     <li *ngFor="let workout of workoutList">
         <p>{{workout.name}}</p>
+        <div *ngIf="loggedin==true">
+            <button>logget ind</button>
+        </div>
+        <div *ngIf="loggedin==false">
+            <button>ikke logget ind</button>
+        </div>
     </li>
 </ul>

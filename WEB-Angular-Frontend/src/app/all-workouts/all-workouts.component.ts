@@ -9,12 +9,19 @@ import { Workout } from '../Interfaces/workout'
 })
 export class AllWorkoutsComponent implements OnInit {
   workoutList: Workout[]
+  loggedin = false
+
   constructor(
     private workoutService: ApiWorkoutService
   ) { }
 
   ngOnInit(): void {
     this.getWorkouts();
+    if(localStorage.getItem("JWT")==null){
+      this.loggedin=false
+    }else{
+      this.loggedin=true
+    }
   }
 
   getWorkouts(): void{
