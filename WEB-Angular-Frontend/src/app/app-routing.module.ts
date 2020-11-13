@@ -9,8 +9,8 @@ import { WorkoutDetailsComponent } from '../app/Components/workout-details/worko
 import { AuthGuard } from '../app/Interceptors/authGuard';
 
 const routes: Routes = [
-  {path: 'addactivity', component: AddActivityComponent, canActivate: [AuthGuard]},
-  {path: 'addexercise', component: AddExerciseComponent},
+  {path: 'addactivity/:name', component: AddActivityComponent, canActivate: [AuthGuard]},
+  {path: 'addexercise/:name', component: AddExerciseComponent},
   {path: '', component: AllWorkoutsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'workoutdetail/:id', component: WorkoutDetailsComponent}

@@ -39,6 +39,18 @@ export class ApiWorkoutService {
     )
   }
 
+  addExercise(name: String, description: String, numberSets: Number, timeRep: Number, id: String): void{
+    this.http.post<any>(this.apiurl+'/createExersice'+id, {
+      "name": name,
+      "description": description,
+      "Numbersets": numberSets,
+      "timereps": timeRep 
+    })
+    .pipe(
+      catchError(this.handleError<any>('createxercise'))
+    )
+  }
+
   httpOptions = {
     headers: new HttpHeaders({'contentType': 'application/json'})
   }
