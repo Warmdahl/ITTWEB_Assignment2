@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   //Method to route to createuser
   createUser(): void {
-    this.loggedIn = this.authService.isLoggedIn();
+    //this.loggedIn = this.authService.isLoggedIn();
     //If a user is logged in, redirect to front page
     if(this.loggedIn == true){
       this.router.navigate([''])
@@ -66,6 +66,8 @@ export class LoginComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+    this.loggedIn = this.authService.isLoggedIn();
   }
 
 }
