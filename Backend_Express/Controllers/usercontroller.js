@@ -1,13 +1,6 @@
 var mongoose = require('mongoose')
 const UserList = mongoose.model('User')
 const bcrypt = require('bcrypt');
-/*var request = require('request');
-
-var apiOptions = {server: "http://localhost:8080"};
-
-if (process.env.NODE_ENV === 'production') {
-    apiOptions.server = "https://backend-express-assignment2.herokuapp.com/"
-}*/
 
 module.exports.AddUserForm = function(req, res){
     res.render('createuser', {title: 'createuser'})
@@ -15,11 +8,11 @@ module.exports.AddUserForm = function(req, res){
 
 //POST - add user to db
 module.exports.AddUser = async function(req, res){
-    /*const user = await UserList.find({username: req.body.username}).catch(reason => res.render("error", reason));
-    if(user){
-        res.render("NO!");
+    const user = await UserList.find({username: req.body.username}).catch(reason => res.render("error", reason));
+    /*if(user){
+        res.send("Username already taken");
     }*/
-
+    //else if(!user){
     var saltrounds = 10;
     bcrypt.hash(req.body.password, saltrounds).then(async function(hash) {
         var user = await UserList.create({username: req.body.username, password: hash}).catch(reason => res.render("error", reason));
@@ -27,38 +20,39 @@ module.exports.AddUser = async function(req, res){
             res.send(user);
         }   
     })
+    //}
 }
 
 //GET - get all users
 module.exports.GetUsers = async function(req, res){
     const users = await UserList.find({}).catch(reason => res.render("error", reason));
-    //res.render('UserList', {title: 'User list', users});
-    //res.send(users);
     if(res.status(200)){
         res.send(users);
     }
-    //res.json(users);
-    //res.json({"test":"test"});
 }
 
 //login
 module.exports.UserLogIn = async function(req, res) {
-    const user = await UserList.find({username: req.body.username}).catch(reason => res.render("error", reason));
+    const user = await UserList.findOne({username: req.body.username}).catch(reason => res.render("error", reason));
     console.log(user)
     if(user){
-        bcrypt.compare(req.body.password, user[0].password).then(function (res2) {
+        bcrypt.compare(req.body.password, user.password).then(function (res2) {
             if(res2){
                 //hvis password passer
                 console.log("correct");
-                res.redirect('//localhost:8080/workouts/workoutlist')
+                user.password = "";
+                token = "test"
+                res.send(user, token);
+                //res.redirect('//localhost:8080/workouts/workoutlist')
             } else{
                 //password er forkert
                 console.log("false");
-                res.render("Password or username is wrong!");
+                res.send("Wrong password!");
+                //res.render("Password or username is wrong!");
             }
         })
-    } else if(!user){
-        res.render("user does not exist")
+    } else{
+        res.send("user does not exist")
     } 
 }
 
