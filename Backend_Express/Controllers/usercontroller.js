@@ -44,16 +44,14 @@ module.exports.UserLogIn = async function(req, res) {
                 console.log("correct");
                 token = user.generateJWT();
                 res.json(token);
-                //res.redirect('//localhost:8080/workouts/workoutlist')
             } else{
                 //password er forkert
                 console.log("false");
-                res.send("Wrong password!");
-                //res.render("Password or username is wrong!");
+                res.status(403).json({"message" : "Wrong password!"});
             }
         })
     } else{
-        res.send("user does not exist")
+        res.status(403).json({"message" : "user does not exist"})
     } 
 }
 

@@ -7,6 +7,9 @@ import { AuthenticationService } from '../Services/authentication.service';
 
 // Insperation form https://jasonwatmore.com/post/2019/06/10/angular-8-user-registration-and-login-example-tutorial#alert-service-ts
 
+/* Might not be in use */
+/* Could be deleted later */
+
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(private authenticationService: AuthenticationService) {}

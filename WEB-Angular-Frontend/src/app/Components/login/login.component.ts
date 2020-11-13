@@ -16,6 +16,7 @@ import { AuthenticationService } from '../../Services/authentication.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
+  loggedIn = false;
 
 
   constructor(
@@ -51,16 +52,14 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.authService.login(this.f.username.value, this.f.password.value)   
-    
-    
-
-    //this.userService.login(this.loginUser).subscribe(response => {this.users.push(this.loginUser)});
-    //this.location.back();
+    this.authService.login(this.f.username.value, this.f.password.value)  
+    this.router.navigate(['']);
   }
 
+  //Method for logout
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['']);
   }
 
   ngOnInit() {

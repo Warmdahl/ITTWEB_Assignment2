@@ -18,11 +18,13 @@ export class ApiUsersService {
 
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
 
+  //Method to get a list of all users in the DB
   getUsers(): Observable<User[]> {
     const usersUrl = `${this.baseUserUrl}users/getusers`
     return this.http.get<User[]>(usersUrl).pipe(catchError(this.handleError<User[]>('getUsers', )));
   }
 
+  //Method to add new user to DB
   addUser(username: string, password: string) {
     this.http.post<any>(`${this.baseUserUrl}users/adduser`, {username, password})
       .subscribe(data => {window.localStorage.setItem('Token', data);
@@ -42,7 +44,8 @@ export class ApiUsersService {
     });
   }
 
-  deleteUser(id: number) {
+  //Delete a user from the DB
+  deleteUser() {
 
   }
 
