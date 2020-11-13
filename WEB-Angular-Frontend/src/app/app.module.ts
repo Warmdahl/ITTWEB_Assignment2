@@ -11,7 +11,8 @@ import { WorkoutDetailsComponent } from './Components/workout-details/workout-de
 import { AddExerciseComponent } from './Components/add-exercise/add-exercise.component';
 import { AddActivityComponent } from './Components/add-activity/add-activity.component';
 import { AppRoutingModule } from './app-routing.module';
-import { JwtInterceptor } from './Interceptors/JWT.interceptor'
+import { JwtInterceptor } from './Interceptors/JWT.interceptor';
+import { CreateUserComponent } from './Components/create-user/create-user.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { JwtInterceptor } from './Interceptors/JWT.interceptor'
     AllWorkoutsComponent,
     WorkoutDetailsComponent,
     AddExerciseComponent,
-    AddActivityComponent
+    AddActivityComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,

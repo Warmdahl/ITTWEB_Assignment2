@@ -11,7 +11,7 @@ module.exports.AddUserForm = function(req, res){
 module.exports.AddUser = async function(req, res){
     const user = await UserList.findOne({username: req.body.username}).catch(reason => res.render("error", reason));
     if(user){
-        res.send("Username already taken");
+        res.status(403).json({"message":"Username already taken"});
     }
     else if(!user){
     var saltrounds = 10;

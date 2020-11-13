@@ -44,6 +44,11 @@ export class ApiUsersService {
     });
   }
 
+  //Maybe later --- TODO ----
+  checkIfUserExist(data: string) {
+    
+  }
+
   //Delete a user from the DB
   deleteUser() {
 

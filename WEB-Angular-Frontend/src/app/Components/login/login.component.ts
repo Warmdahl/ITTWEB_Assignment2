@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { User } from '../../Interfaces/user';
-import { ApiUsersService } from '../../Services/api-users.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { first } from 'rxjs/operators'
+import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { AuthenticationService } from '../../Services/authentication.service';
 
@@ -18,23 +15,12 @@ export class LoginComponent implements OnInit {
   submitted = false;
   loggedIn = false;
 
-
   constructor(
-    private userService: ApiUsersService,
     private location: Location,
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private authService: AuthenticationService,
     private router: Router
   ) { }
-
-  users: User[]; //<---- Array of users, internal use
-  loginUser: User;
-
-  //get function of all users in the DB - just used to check
-  getUsers(): void {
-    this.userService.getUsers().subscribe(response => this.users = response)
-  }
 
   //What happens when cancel btn is pressed
   goBack(): void {
@@ -62,10 +48,21 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  ngOnInit() {
-    this.getUsers(); //felt cute, might delete later
+  //Method to route to createuser
+  createUser(): void {
+    this.loggedIn = this.authService.isLoggedIn();
+    //If a user is logged in, redirect to front page
+    if(this.loggedIn == true){
+      this.router.navigate([''])
+    }
+    //If no user logged in, redirect to create user
+    else{
+      this.router.navigate(['/createuser'])
+    }
+  }
 
-    this.loginForm = this.formBuilder.group({
+  ngOnInit() {
+      this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
