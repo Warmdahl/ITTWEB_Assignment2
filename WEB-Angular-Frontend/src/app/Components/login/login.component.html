@@ -18,7 +18,7 @@
     </div>
 </form>
 
-<button (click)="logout">Logout</button>
+<button (click)="logout()">Logout</button>
 
 <!--
 <div>
@@ -30,10 +30,10 @@
 </div>
 <button (click)="goBack()">Cancel</button>
 
-
+-->
 <ul class="users">
     <li *ngFor="let user of users">
         <p>{{user.username}} and {{user.password}}</p>
     </li>
 </ul>
--->
+

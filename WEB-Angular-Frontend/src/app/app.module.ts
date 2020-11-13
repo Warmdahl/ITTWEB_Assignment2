@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; //NgModels
-import { HttpClientModule } from '@angular/common/http'; //HTTP
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; //HTTP
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { WorkoutDetailsComponent } from './Components/workout-details/workout-de
 import { AddExerciseComponent } from './Components/add-exercise/add-exercise.component';
 import { AddActivityComponent } from './Components/add-activity/add-activity.component';
 import { AppRoutingModule } from './app-routing.module';
+import { JwtInterceptor } from './Interceptors/JWT.interceptor'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,11 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
+    multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -19,7 +19,7 @@ module.exports.AddUser = async function(req, res){
         var user = await UserList.create({username: req.body.username, password: hash}).catch(reason => res.render("error", reason));
         if(user){
             token = user.generateJWT();
-            res.send(token);
+            res.json(token);
         }   
     })
     }
@@ -43,7 +43,7 @@ module.exports.UserLogIn = async function(req, res) {
                 //hvis password passer
                 console.log("correct");
                 token = user.generateJWT();
-                res.send(token);
+                res.json(token);
                 //res.redirect('//localhost:8080/workouts/workoutlist')
             } else{
                 //password er forkert

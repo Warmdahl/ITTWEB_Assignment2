@@ -16,7 +16,7 @@ export class ApiWorkoutService {
   ) { }
 
   getWorkoutList(): Observable<Workout[]> {
-    return this.http.get<Workout[]>(this.apiurl+"/workoutlist")
+    return this.http.get<any>(this.apiurl+"/workoutlist")
     .pipe(
       tap(_ => console.log("WorkoutList fetched")),
       catchError(this.handleError<Workout[]>('getWorkoutList', []))

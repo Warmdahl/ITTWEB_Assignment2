@@ -26,8 +26,8 @@ export class AuthenticationService {
    login(username, password) {
      console.log("test")
      this.http.post<any>(`${this.baseUserUrl}users/userlogin`, {username, password})
-      .subscribe(response => {this.saveToken(response.token);
-      console.log(response.token);
+      .subscribe(response => {this.saveToken(response);
+      console.log("test2");
       return true;
     },
       //Errors will call this callback instead
@@ -52,7 +52,7 @@ export class AuthenticationService {
 
    private saveToken(token: string) {
      //window.localStorage['Token'] = token;
-     window.localStorage.setItem(token, 'Token')
+     window.localStorage.setItem('Token',token)
    }
 
    public getToken() {

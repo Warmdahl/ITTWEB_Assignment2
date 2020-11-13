@@ -18,7 +18,7 @@ module.exports.createworkout = async function(req, res) {
     //    res.redirect('//localhost:8080/workouts/workoutlist')
     //}
     console.log(workout.name);
-    res.sendStatus(200);
+    res.send(workout);
 }
 
 //Create Exercise

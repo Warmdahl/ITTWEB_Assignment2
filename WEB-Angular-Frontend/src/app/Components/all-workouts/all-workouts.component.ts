@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiWorkoutService } from '../../Services/api-workout.service';
 import { Workout } from '../../Interfaces/workout'
+import {Location} from '@angular/common'
+import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-all-workouts',
@@ -13,7 +15,9 @@ export class AllWorkoutsComponent implements OnInit {
   tempWorkout: Workout
 
   constructor(
-    private workoutService: ApiWorkoutService
+    private workoutService: ApiWorkoutService,
+    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +40,8 @@ export class AllWorkoutsComponent implements OnInit {
 
   add(name: String): void{
     this.workoutService.createWorkout({name} as Workout)
-    .subscribe(workout => {this.tempWorkout = workout})
+    .subscribe(workout => {this.tempWorkout = workout;
+    this.router.navigate(['workoutdetail/'+this.tempWorkout._id])})
     
   }
 

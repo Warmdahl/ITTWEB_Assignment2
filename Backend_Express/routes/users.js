@@ -1,18 +1,18 @@
 var express = require('express');
 var router = express.Router();
 var usercontroller = require('../Controllers/usercontroller')
-/*var jwt = require('express-jwt');
+var jwt = require('express-jwt');
 var auth = jwt({
     secret: process.env.JWT_SECRET,
     userProperty: 'payload',
-    algorithms: 'HS256'
-});*/
+    algorithms: ['HS256']
+});
 
 //GET
-router.get('/form', usercontroller.AddUserForm)
+router.get('/form', auth, usercontroller.AddUserForm)
 
 /* GET users listing. */
-router.get('/getusers', usercontroller.GetUsers)
+router.get('/getusers', auth, usercontroller.GetUsers)
 
 //Post
 router.post('/adduser', usercontroller.AddUser)
@@ -21,7 +21,7 @@ router.post('/adduser', usercontroller.AddUser)
 router.post('/userlogin', usercontroller.UserLogIn)
 
 //Delete users in db
-router.post('/deleteusers', usercontroller.deleteusers)
+router.post('/deleteusers', auth, usercontroller.deleteusers)
 
 
 
