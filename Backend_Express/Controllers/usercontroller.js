@@ -1,6 +1,11 @@
 var mongoose = require('mongoose')
 const UserList = mongoose.model('User')
 const bcrypt = require('bcrypt');
+var jwt = require('express-jwt');
+var auth = jwt({
+    secret: process.env.JWT_SECRET,
+    userProperty: 'payload'
+});
 
 module.exports.AddUserForm = function(req, res){
     res.render('createuser', {title: 'createuser'})
@@ -33,7 +38,7 @@ module.exports.GetUsers = async function(req, res){
 
 //login
 module.exports.UserLogIn = async function(req, res) {
-    const user = await UserList.findOne({username: req.body.username}).catch(reason => res.render("error", reason));
+    var user = await UserList.findOne({username: req.body.username}).catch(reason => res.render("error", reason));
     console.log(user)
     if(user){
         bcrypt.compare(req.body.password, user.password).then(function (res2) {
@@ -41,7 +46,7 @@ module.exports.UserLogIn = async function(req, res) {
                 //hvis password passer
                 console.log("correct");
                 user.password = "";
-                token = "test"
+                token = user.generateJWT();
                 res.send(user, token);
                 //res.redirect('//localhost:8080/workouts/workoutlist')
             } else{
