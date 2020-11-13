@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var nodemon = require('nodemon');
 const cors = require('cors');
 require('./Models/db')
 require('dotenv').config();
@@ -16,6 +17,7 @@ var app = express();
 const port = 8080;
 
 app.use(cors());
+app.use(nodemon)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
