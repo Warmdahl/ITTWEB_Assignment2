@@ -24,6 +24,7 @@ export class AuthenticationService {
    }
 
    login(username, password) {
+     console.log("test")
      this.http.post<any>(`${this.baseUserUrl}users/userlogin`, {username, password})
       .subscribe(response => {this.saveToken(response.token);
       console.log(response.token);
@@ -51,7 +52,7 @@ export class AuthenticationService {
 
    private saveToken(token: string) {
      //window.localStorage['Token'] = token;
-     localStorage.setItem('Token', token)
+     window.localStorage.setItem(token, 'Token')
    }
 
    public getToken() {
