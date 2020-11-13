@@ -14,19 +14,20 @@ module.exports.AddUserForm = function(req, res){
 
 //POST - add user to db
 module.exports.AddUser = async function(req, res){
-    const user = await UserList.find({username: req.body.username}).catch(reason => res.render("error", reason));
-    /*if(user){
+    const user = await UserList.findOne({username: req.body.username}).catch(reason => res.render("error", reason));
+    if(user){
         res.send("Username already taken");
-    }*/
-    //else if(!user){
+    }
+    else if(!user){
     var saltrounds = 10;
     bcrypt.hash(req.body.password, saltrounds).then(async function(hash) {
         var user = await UserList.create({username: req.body.username, password: hash}).catch(reason => res.render("error", reason));
         if(user){
-            res.send(user);
+            token = user.generateJWT();
+            res.send(token);
         }   
     })
-    //}
+    }
 }
 
 //GET - get all users
@@ -46,9 +47,8 @@ module.exports.UserLogIn = async function(req, res) {
             if(res2){
                 //hvis password passer
                 console.log("correct");
-                user.password = "";
                 token = user.generateJWT();
-                res.send(user, token);
+                res.send(token);
                 //res.redirect('//localhost:8080/workouts/workoutlist')
             } else{
                 //password er forkert

@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { User } from '../../Interfaces/user';
 import { ApiUsersService } from '../../Services/api-users.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { first } from 'rxjs/operators'
+
+import { AuthenticationService } from '../../Services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +14,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  submitted = false;
+
 
   constructor(
     private userService: ApiUsersService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private authService: AuthenticationService,
+    private router: Router
   ) { }
 
   users: User[]; //<---- Array of users, internal use
@@ -30,20 +40,36 @@ export class LoginComponent implements OnInit {
     this.location.back();
   }
 
-  //What happens when login btn is pressed
-  login(username: string, password: string): void {
-    username = username.trim();
-    if(!username) {return; }
+  get f() {return this.loginForm.controls; }
 
-    this.loginUser.username = username;
-    this.loginUser.password = password;
+  //What happens when login btn is pressed
+  login(): void {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if(this.loginForm.invalid) {
+      return;
+    }
+
+    this.authService.login(this.f.username.value, this.f.password.value)   
+    
+    
 
     //this.userService.login(this.loginUser).subscribe(response => {this.users.push(this.loginUser)});
-    this.location.back();
+    //this.location.back();
   }
 
-  ngOnInit(): void {
-    this.getUsers(); //felt cute, might delete later
+  logout(): void {
+    this.authService.logout();
+  }
+
+  ngOnInit() {
+    //this.getUsers(); //felt cute, might delete later
+
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
 }

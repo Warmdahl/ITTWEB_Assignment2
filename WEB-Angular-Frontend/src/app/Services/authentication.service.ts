@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -24,18 +24,53 @@ export class AuthenticationService {
    }
 
    login(username, password) {
-     return this.http.post<any>(`${this.baseUserUrl}users/userlogin`, {username, password})
-      .pipe(map(user => {
-        //store user details and jwt in local storage to keep user logged in between page refreshes
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        return user;
-      }));
+     this.http.post<any>(`${this.baseUserUrl}users/userlogin`, {username, password})
+      .subscribe(response => {this.saveToken(response.token);
+      console.log(response.token);
+      return true;
+    },
+      //Errors will call this callback instead
+    (err : HttpErrorResponse) => {
+      if(err.error instanceof Error) {
+        // A client-side or network occurred. Handle it accordingly.
+        console.log('An error occured: ', err.error.message);
+      } else {
+        // The backend returned an unsuccseful response code.
+        // The respose boby may contain clues as to what went wrong.
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+      }
+      return false;
+    });
    }
 
    logout(){
      //remove user from local storage and set current user to null
-     localStorage.removeItem('currentUser');
-     this.currentUserSubject.next(null);
+     localStorage.removeItem('Token');
+     //this.currentUserSubject.next(null);
    }
+
+   private saveToken(token: string) {
+     //window.localStorage['Token'] = token;
+     localStorage.setItem('Token', token)
+   }
+
+   public getToken() {
+     if(window.localStorage.getItem('Token')) {
+       return window.localStorage.getItem('Token');
+     } else {
+       return '';
+     }
+   }
+
+   public isLoggedIn() {
+     const token = this.getToken();
+     if(token) {
+       const payload = JSON.parse(window.atob(token.split('.')[1]));
+       return payload.exp > Date.now() / 1000;
+     } else {
+       return false;
+     }
+   }
+
+
 }

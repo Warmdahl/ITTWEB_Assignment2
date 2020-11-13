@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../Interfaces/user';
 import { Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -23,8 +23,23 @@ export class ApiUsersService {
     return this.http.get<User[]>(usersUrl).pipe(catchError(this.handleError<User[]>('getUsers', )));
   }
 
-  addUser(username: string, password: string): Observable<User> {
-    return this.http.post<User>(`${this.baseUserUrl}users/adduser`, {username, password})
+  addUser(username: string, password: string) {
+    this.http.post<any>(`${this.baseUserUrl}users/adduser`, {username, password})
+      .subscribe(data => {window.localStorage.setItem('Token', data);
+      return true;
+    },
+    //Errors will call this callback instead
+    (err : HttpErrorResponse) => {
+      if(err.error instanceof Error) {
+        // A client-side or network occurred. Handle it accordingly.
+        console.log('An error occured: ', err.error.message);
+      } else {
+        // The backend returned an unsuccseful response code.
+        // The respose boby may contain clues as to what went wrong.
+        console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
+      }
+      return false;
+    });
   }
 
   deleteUser(id: number) {
