@@ -1,1 +1,11 @@
-<p>add-exercise works!</p>
+<h1>Add Exercise to {{name}}</h1>
+<table>
+    <tr><td>Name:</td> <td><input #ExName/></td></tr>
+    <tr><td>Description: </td><td><input #ExDescription/></td></tr>
+    <tr><td>Number of sets: </td><td><input #ExNumSets type="number"/></td></tr>
+    <tr><td>Time/Repetitions: </td><td><input #ExTimeRep type="number"/></td></tr>
+    
+    
+</table>
+<button (click)="cancel()">Cancel</button>
+<button (click)="addExerciseToWorkout(ExName.value, ExDescription.value, ExNumSets.value, ExTimeRep.value);">Add Exercise to Workout</button>

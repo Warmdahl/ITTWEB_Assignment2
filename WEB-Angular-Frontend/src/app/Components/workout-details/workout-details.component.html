@@ -1,1 +1,28 @@
-<p>{{workout.name}}</p>
+<h1>Workout details</h1>
+<div>
+    <p>{{workout.name}}</p>
+    <ul class="exercises">
+        <table class="WOtable">
+            
+            <tr class="header">
+                <td>Name</td>
+                <td>Description</td>
+                <td>Number of sets</td>
+                <td>Time/Repetitions</td>
+            </tr>
+
+            <tr *ngFor="let exercise of workout.exercises">
+                <td>{{exercise.name}}</td>
+                <td>{{exercise.description}}</td>
+                <td>{{exercise.timerep}}</td>
+                <td>{{exercise.numbersets}}</td>
+            </tr>
+        </table>
+
+        <div *ngIf="loggedIn==true">
+            <button (click)="addActivity()">Add Activity</button>
+            <button (click)="addExercise()">Add Exercise</button>
+        </div>
+    </ul>
+</div>
+<!--div *ngIf="loggedIn==true"></div-->

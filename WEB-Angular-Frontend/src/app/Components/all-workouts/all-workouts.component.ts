@@ -3,6 +3,7 @@ import { ApiWorkoutService } from '../../Services/api-workout.service';
 import { Workout } from '../../Interfaces/workout'
 import {Location} from '@angular/common'
 import {Router} from '@angular/router'
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 
 @Component({
   selector: 'app-all-workouts',
@@ -17,15 +18,16 @@ export class AllWorkoutsComponent implements OnInit {
   constructor(
     private workoutService: ApiWorkoutService,
     private location: Location,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
     this.getWorkouts();
-    if(localStorage.getItem("JWT")==null){
+    if(this.authenticationService.isLoggedIn()){
       this.loggedin=true
     }else{
-      this.loggedin=true
+      this.loggedin=false
     }
   }
 
