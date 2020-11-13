@@ -1,29 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { User } from '../Interfaces/user';
-
-//Inspiration taken from: https://jasonwatmore.com/post/2019/06/10/angular-8-user-registration-and-login-example-tutorial 
 
 @Injectable({providedIn: 'root'})
 
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<User>;
-  private currentUser: Observable<User>
   private baseUserUrl = 'http://localhost:8080/'
 
-  constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
-   }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
-   public get currentUserValue(): User {
-     return this.currentUserSubject.value;
-   }
-
-   login(username, password) {
+  //Login method
+    login(username, password) {
      console.log("test")
      this.http.post<any>(`${this.baseUserUrl}users/userlogin`, {username, password})
       .subscribe(response => {this.saveToken(response);
@@ -42,19 +30,20 @@ export class AuthenticationService {
       }
       return false;
     });
-   }
+    }
 
+   //Logout the user
    logout(){
-     //remove user from local storage and set current user to null
+     //remove current token from local storage
      localStorage.removeItem('Token');
-     //this.currentUserSubject.next(null);
    }
 
+   //Method for saving the JWT token in localstorage
    private saveToken(token: string) {
-     //window.localStorage['Token'] = token;
      window.localStorage.setItem('Token',token)
    }
 
+   //Method for retrieving the JWT token from localstorage
    public getToken() {
      if(window.localStorage.getItem('Token')) {
        return window.localStorage.getItem('Token');
@@ -63,6 +52,7 @@ export class AuthenticationService {
      }
    }
 
+   //Method to check if there is a JWT present in LocalStorage ie. a user is logged in
    public isLoggedIn() {
      const token = this.getToken();
      if(token) {
@@ -72,6 +62,4 @@ export class AuthenticationService {
        return false;
      }
    }
-
-
 }

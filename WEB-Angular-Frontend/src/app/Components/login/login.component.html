@@ -1,39 +1,23 @@
 <h2>Login</h2>
 <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">Username: </label>
         <input type="text" formControlName="username" class="form-control" [ngClass]="{'is-invalid': submitted && f.username.errors}" />
         
     </div>
     <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password">Password: </label>
         <input type="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': submitted && f.password.errors}" />
         
     </div>
     <div class="form-group">
         <button class="btn btn-primary">
-            
             Login
         </button>
     </div>
 </form>
 
 <button (click)="logout()">Logout</button>
-
-<!--
-<div>
-    <label>
-        Username: <input #userName />
-        Password: <input #passWord />
-    </label>
-    <button (click)="login(userName.value, passWord.value); userName.value='' ">Login</button>
-</div>
-<button (click)="goBack()">Cancel</button>
-
--->
-<ul class="users">
-    <li *ngFor="let user of users">
-        <p>{{user.username}} and {{user.password}}</p>
-    </li>
-</ul>
+<button (click)="goBack()">Go back</button>
+<button (click)="createUser()">Create new user</button>
 

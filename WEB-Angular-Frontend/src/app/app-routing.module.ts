@@ -6,6 +6,7 @@ import { AddExerciseComponent } from '../app/Components/add-exercise/add-exercis
 import { AllWorkoutsComponent } from '../app/Components/all-workouts/all-workouts.component';
 import { LoginComponent } from '../app/Components/login/login.component';
 import { WorkoutDetailsComponent } from '../app/Components/workout-details/workout-details.component';
+import { CreateUserComponent } from '../app/Components/create-user/create-user.component';
 import { AuthGuard } from '../app/Interceptors/authGuard';
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'addexercise/:name', component: AddExerciseComponent},
   {path: '', component: AllWorkoutsComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'workoutdetail/:id', component: WorkoutDetailsComponent}
+  {path: 'workoutdetail/:id', component: WorkoutDetailsComponent},
+  {path: 'createuser', component: CreateUserComponent}
 ]
 
 @NgModule({

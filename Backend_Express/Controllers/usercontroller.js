@@ -11,7 +11,7 @@ module.exports.AddUserForm = function(req, res){
 module.exports.AddUser = async function(req, res){
     const user = await UserList.findOne({username: req.body.username}).catch(reason => res.render("error", reason));
     if(user){
-        res.send("Username already taken");
+        res.status(403).json({"message":"Username already taken"});
     }
     else if(!user){
     var saltrounds = 10;
@@ -44,16 +44,14 @@ module.exports.UserLogIn = async function(req, res) {
                 console.log("correct");
                 token = user.generateJWT();
                 res.json(token);
-                //res.redirect('//localhost:8080/workouts/workoutlist')
             } else{
                 //password er forkert
                 console.log("false");
-                res.send("Wrong password!");
-                //res.render("Password or username is wrong!");
+                res.status(403).json({"message" : "Wrong password!"});
             }
         })
     } else{
-        res.send("user does not exist")
+        res.status(403).json({"message" : "user does not exist"})
     } 
 }
 
