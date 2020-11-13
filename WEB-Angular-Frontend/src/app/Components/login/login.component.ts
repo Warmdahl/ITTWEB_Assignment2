@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     this.location.back();
   }
 
+  //Method for easier form access
   get f() {return this.loginForm.controls; }
 
   //What happens when login btn is pressed
@@ -48,9 +49,9 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['']);
   }
 
-  //Method to route to createuser
+  //Method to route to createuser 
+  //Should only be seen if no user is logged in, but in case
   createUser(): void {
-    //this.loggedIn = this.authService.isLoggedIn();
     //If a user is logged in, redirect to front page
     if(this.loggedIn == true){
       this.router.navigate([''])

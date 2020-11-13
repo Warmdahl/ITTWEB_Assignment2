@@ -19,7 +19,7 @@
 
 <button (click)="logout()">Logout</button>
 <button (click)="goBack()">Go back</button>
-<div *ngIf="loggedIn">
+<div *ngIf="loggedIn==false">
     <button (click)="createUser()">Create new user</button>
 </div>
 
