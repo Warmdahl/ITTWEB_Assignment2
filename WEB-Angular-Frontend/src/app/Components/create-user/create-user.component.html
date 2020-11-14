@@ -3,7 +3,7 @@
 <form [formGroup]="createUserForm" (ngSubmit)="goCreate()" >
     <div class="form-group">
         <mat-form-field class="form_field" appearance="fill">
-            <mat-label >Username: </mat-label>
+            <mat-label for="username">Username: </mat-label>
             <input matInput type="text" placeholder="username" formControlName="username"/>
             <mat-error *ngIf="f.username.errors.required">username is required></mat-error>
         </mat-form-field>
