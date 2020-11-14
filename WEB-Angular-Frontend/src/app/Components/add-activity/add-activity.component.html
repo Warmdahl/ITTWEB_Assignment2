@@ -1,6 +1,6 @@
 <h2>Add an activity to the workout</h2>
 
-<form [formGroup]="activityForm" (ngSubmit)="goSubmit()">
+<form [formGroup]="activityForm" >
     <div class="form-group">
         <mat-form-field class="form_field" appearance="fill">
             <mat-label for="actDescription">Activity Description: </mat-label>
@@ -9,10 +9,13 @@
         </mat-form-field>
     </div>
     <div class="form-group">
-        <button mat-raised-button class="btn btn-primary">
+        <button mat-raised-button (click)="goSubmit()" class="btn btn-primary">
             Submit
+        </button>
+        <button mat-raised-button  (click)="goBack()">
+            Cancel
         </button>
     </div>
 </form>
 
-<button mat-raised-button  (click)="goBack()">Cancel</button>
+
