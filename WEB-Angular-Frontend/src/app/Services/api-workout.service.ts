@@ -39,18 +39,24 @@ export class ApiWorkoutService {
     )
   }
 
-  addExercise(name: String, description: String, numberSets: Number, timeRep: Number, id: String): void{
-    this.http.post<any>(this.apiurl+'/createexercise/'+id, {
-      "name": name,
-      "description": description,
-      "Numbersets": numberSets,
-      "timereps": timeRep 
-    }, this.httpOptions)
-    .pipe(
-      catchError(this.handleError<any>('createxercise'))
-    )
-    return null;
+  addExercise(name, description, numbersets, timerep, id){
+    this.http.post<any>(this.apiurl+"/createexercise/"+id, {name, description, numbersets, timerep})
+    .subscribe(response => {console.log(response)})
   }
+
+
+  /*addExercise(name, description, numbersets, timerep, id){
+    console.log("I am here")
+    this.http.post<any>(this.apiurl+'/createexercise/'+id.toString(), {
+      name,
+      description,
+      numbersets,
+      timerep 
+    })
+    return this.http.get<any>(`${this.apiurl}/showexcinwok/${id}`)
+    //.pipe(catchError(this.handleError<any>('createxercise')))
+    //return null;
+  }*/
 
   httpOptions = {
     headers: new HttpHeaders({'contentType': 'application/json'})

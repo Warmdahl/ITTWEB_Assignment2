@@ -33,7 +33,7 @@ export class WorkoutDetailsComponent implements OnInit {
   }
 
   addExercise(): void {
-    this.router.navigate(['addexercise/'+this.workout.name])
+    this.router.navigate(['addexercise/'+this.workout._id])
   }
 
   addActivity(): void {

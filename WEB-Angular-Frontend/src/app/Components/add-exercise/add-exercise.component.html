@@ -1,12 +1,17 @@
-<h1>Add Exercise to {{name}}</h1>
-
-<table>
-    <tr><td>Name:</td> <td><input #ExName/></td></tr>
-    <tr><td>Description: </td><td><input #ExDescription/></td></tr>
-    <tr><td>Number of sets: </td><td><input #ExNumSets type="number"/></td></tr>
-    <tr><td>Time/Repetitions: </td><td><input #ExTimeRep type="number"/></td></tr>
-    
-    
-</table>
-<button (click)="cancel()">Cancel</button>
-<button (click)="addExerciseToWorkout(ExName.value, ExDescription.value, ExNumSets.value, ExTimeRep.value);">Add Exercise to Workout</button>
+<h1>Add Exercise to {{id}}</h1>
+<form [formGroup]="addExerciseForm" (ngSubmit)="addExerciseToWorkout()">
+    <table class="form-group">
+        <tr><td>Name:</td> <td><input type="text" formControlName="ExName" class="form-control" />
+            <!--div *ngIf="f.ExName.errors.required && submitted" class="invalid-feedback">A name is required</div-->
+        </td></tr>
+        <tr><td>Description: </td><td><input type="text" formControlName="ExDescription" class="form-control"/></td></tr>
+        <tr><td>Number of sets: </td><td><input type="number" formControlName="ExNumSets" class="form-control"/></td></tr>
+        <tr><td>Time/Repetitions: </td><td><input type="number" formControlName="ExTimeRep" class="form-control"/></td></tr>
+        
+        
+    </table>
+    <!--button (click)="cancel()">Cancel</button-->
+    <div class="form-group">
+        <button class="btn btn-primary">Add Exercise to Workout</button>
+    </div>
+</form>

@@ -23,18 +23,18 @@ module.exports.createworkout = async function(req, res) {
 
 //Create Exercise
 module.exports.createExercise = async function(req, res) {
-    var workoutprogram = await WorkoutList.findOne({name: req.params.id}).catch(reason => res.render("error", reason));
+    var workoutprogram = await WorkoutList.findOne({_id: req.params.id}).catch(reason => res.render("error", reason));
     
     let exercise = {
         name: req.body.name, 
-        description: req.body.Description,
-        numbersets: req.body.Numbersets,
-        timerep: req.body.timereps}
+        description: req.body.description,
+        numbersets: req.body.numbersets,
+        timerep: req.body.timerep}
 
     if(exercise){
         workoutprogram.exercises.push(exercise);
         await workoutprogram.save();      
-        res.redirect('//localhost:8080/workouts/showexcinwok/' + workoutprogram.name);
+        res.json(exercise);
     }
 }
 
