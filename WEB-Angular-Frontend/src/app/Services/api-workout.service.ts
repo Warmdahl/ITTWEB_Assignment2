@@ -40,15 +40,16 @@ export class ApiWorkoutService {
   }
 
   addExercise(name: String, description: String, numberSets: Number, timeRep: Number, id: String): void{
-    this.http.post<any>(this.apiurl+'/createExersice'+id, {
+    this.http.post<any>(this.apiurl+'/createexercise/'+id, {
       "name": name,
       "description": description,
       "Numbersets": numberSets,
       "timereps": timeRep 
-    })
+    }, this.httpOptions)
     .pipe(
       catchError(this.handleError<any>('createxercise'))
     )
+    return null;
   }
 
   httpOptions = {

@@ -13,6 +13,6 @@ router.post('/createworkout', workoutcontroller.createworkout)
 router.get('/showexcinwok/:id', workoutcontroller.showExcinWok)
 
 //Post a exercise to a workoutprogram
-router.post('/createExercise/:id', workoutcontroller.createExercise)
+router.post('/createexercise/:id', workoutcontroller.createExercise)
 
 module.exports = router;
