@@ -14,19 +14,19 @@ export class ApiUsersService {
   // Change to Heroku call later
   // When API is installed on Heroku
   //***************************************//
-  private baseUserUrl = 'http://localhost:8080/'
+  private baseUserUrl = 'http://localhost:8080'
 
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
 
   //Method to get a list of all users in the DB
   getUsers(): Observable<User[]> {
-    const usersUrl = `${this.baseUserUrl}users/getusers`
+    const usersUrl = `${this.baseUserUrl}/users/getusers`
     return this.http.get<User[]>(usersUrl).pipe(catchError(this.handleError<User[]>('getUsers', )));
   }
 
   //Method to add new user to DB
   addUser(username: string, password: string) {
-    this.http.post<any>(`${this.baseUserUrl}users/adduser`, {username, password})
+    this.http.post<any>(`${this.baseUserUrl}/users/adduser`, {username, password})
       .subscribe(data => {window.localStorage.setItem('Token', data);
       return true;
     },
@@ -44,9 +44,20 @@ export class ApiUsersService {
     });
   }
 
-  //Delete a user from the DB
-  deleteUser() {
+  //Method to get all activities for one user and a specific workout
+  getActivitiesUserWok(username: String, id: String) {
+    return this.http.post<any>(`${this.baseUserUrl}/users/getactivitiesuserwok`, {username, id});
+  }
 
+  //Method to post a activity to a user and a specific workout
+  postActivityUserWok(username: String, workoutId: String, actDescription: String) {
+    var actDate = Date().toString();
+    //let actDate: Date = new Date();
+    console.log("postacivity?")
+    console.log(actDate)
+    //console.log(aDate)
+    return this.http.post<any>(`${this.baseUserUrl}/users/addactivity`, {username, actDate, actDescription, workoutId})
+      .subscribe(response => (console.log(response)))
   }
 
   //Handle Error function

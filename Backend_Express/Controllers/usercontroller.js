@@ -1,5 +1,6 @@
 var mongoose = require('mongoose')
 const UserList = mongoose.model('User')
+const WorkoutList = mongoose.model('Workout')
 const bcrypt = require('bcrypt');
 
 
@@ -76,5 +77,47 @@ module.exports.deleteusers = async function(req, res){
     }
     else{
         res.redirect('//localhost:8080/users/form')
+    }
+}
+
+//Add Activity to user
+module.exports.addActivity = async function(req, res){
+    var user = await UserList.findOne({username: req.body.username}).catch(reason => res.render("error", reason));
+    if(user){
+        let activity = {
+            actDate: req.body.actDate,
+            actDescription: req.body.actDescription,
+            workoutId: req.body.workoutId
+        }
+
+        if(activity){
+            user.activities.push(activity);
+            await user.save();
+            res.json(activity);
+        }
+
+    }
+    else{
+        res.status(403).json({"message" : "user does not exist"})
+    }
+}
+
+//Get all activities to one user and one workout
+module.exports.getActivitesUserWok = async function(req, res){
+    const user = await UserList.findOne({username: req.body.username}).catch(reason => res.render("error", reason));
+    const workout = await WorkoutList.findOne({_id: req.body.id}).catch(reason => res.render("error", reason));
+    
+    if(user && workout){
+        var activities = [];
+        user.activities.forEach(activity => {
+            console.log("user activity: " + activity);
+            if(activity.workoutId == workout._id){
+                activities.push(activity);
+            }
+        });
+        res.json(activities);
+    }
+    else{
+        res.status(403).json({"message" : "either user or workout is misssing"})
     }
 }

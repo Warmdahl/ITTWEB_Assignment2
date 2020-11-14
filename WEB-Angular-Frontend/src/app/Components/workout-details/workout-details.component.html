@@ -22,7 +22,15 @@
         <div *ngIf="loggedIn==true">
             <button (click)="addActivity()">Add Activity</button>
             <button (click)="addExercise()">Add Exercise</button>
+            <button (click)="goBack()">Return</button>
         </div>
+    </ul>
+</div>
+<div>
+    <ul class="activities">
+        <li *ngFor="let activity of activitiesList">
+            {{activity.actDate}} {{activity.actDescription}}
+        </li>
     </ul>
 </div>
 <!--div *ngIf="loggedIn==true"></div-->

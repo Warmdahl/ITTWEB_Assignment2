@@ -23,6 +23,12 @@ router.post('/userlogin', usercontroller.UserLogIn)
 //Delete users in db
 router.post('/deleteusers', auth, usercontroller.deleteusers)
 
+//Add activity to user
+router.post('/addactivity', auth, usercontroller.addActivity)
+
+//Get activity for user to specific workout
+router.post('/getactivitiesuserwok', auth, usercontroller.getActivitesUserWok)
+
 
 
 module.exports = router;

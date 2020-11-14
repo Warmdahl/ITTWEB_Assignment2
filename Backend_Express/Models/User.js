@@ -10,6 +10,11 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    activities: {
+        type: [{actDate: String,
+        actDescription: String,
+        workoutId: String}]
     }
 });
 

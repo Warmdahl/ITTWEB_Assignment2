@@ -62,4 +62,15 @@ export class AuthenticationService {
        return false;
      }
    }
+
+   //Find Username from token
+   public UserNameFromToken() {
+     const token = this.getToken();
+     if(token){
+       const payload = JSON.parse(window.atob(token.split('.')[1]));
+       return payload.username;
+     } else {
+       return false;
+     }
+   } 
 }

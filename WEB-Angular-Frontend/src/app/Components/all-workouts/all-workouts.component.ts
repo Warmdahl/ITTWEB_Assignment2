@@ -4,6 +4,10 @@ import { Workout } from '../../Interfaces/workout'
 import {Location} from '@angular/common'
 import {Router} from '@angular/router'
 import { AuthenticationService } from 'src/app/Services/authentication.service';
+import { ApiUsersService } from 'src/app/Services/api-users.service';
+import { User } from 'src/app/Interfaces/user';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-all-workouts',
@@ -12,6 +16,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 })
 export class AllWorkoutsComponent implements OnInit {
   workoutList: Workout[]
+  public activitiesList;
   loggedin = false
   tempWorkout: Workout
 
@@ -19,7 +24,8 @@ export class AllWorkoutsComponent implements OnInit {
     private workoutService: ApiWorkoutService,
     private location: Location,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private userService: ApiUsersService
   ) { }
 
   ngOnInit(): void {
@@ -34,10 +40,6 @@ export class AllWorkoutsComponent implements OnInit {
   getWorkouts(): void{
     this.workoutService.getWorkoutList()
       .subscribe(workouts => this.workoutList = workouts);
-  }
-
-  login(){
-
   }
 
   add(name: String): void{

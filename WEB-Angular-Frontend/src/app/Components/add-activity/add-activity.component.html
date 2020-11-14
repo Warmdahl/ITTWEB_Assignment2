@@ -1,1 +1,18 @@
-<p>add-activity works!</p>
+<h2>Add an activity to the workout</h2>
+
+<form [formGroup]="activityForm" (ngSubmit)="goSubmit()">
+    <div class="form-group">
+        <label for="actDescription">Activity Description: </label>
+        <input type="text" size="50" formControlName="actDescription" class="form-control" [ngClass]="{'is-invalid': submitted && f.actDescription.errors}"/>
+        <div *ngIf="submitted && f.actDescription.errors" class="invalid-feedback">
+            <div *ngIf="f.actDescription.errors.required">Needs text if you want to submit</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary">
+            Submit
+        </button>
+    </div>
+</form>
+
+<button (click)="goBack()">Cancel</button>
