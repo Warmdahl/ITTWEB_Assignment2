@@ -24,9 +24,9 @@ export class AddExerciseComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id').toString()
     this.addExerciseForm = this.formBuilder.group({
       ExName: ['', [Validators.required]],
-      ExDescription: ['',[]],
-      ExNumSets: ['',[]],
-      ExTimeRep: ['',[]]
+      ExDescription: ['',[Validators.required]],
+      ExNumSets: ['',[Validators.required]],
+      ExTimeRep: ['',[Validators.required]]
     })
   }
 

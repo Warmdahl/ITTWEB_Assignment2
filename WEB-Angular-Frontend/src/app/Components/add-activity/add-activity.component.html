@@ -2,17 +2,17 @@
 
 <form [formGroup]="activityForm" (ngSubmit)="goSubmit()">
     <div class="form-group">
-        <label for="actDescription">Activity Description: </label>
-        <input type="text" size="50" formControlName="actDescription" class="form-control" [ngClass]="{'is-invalid': submitted && f.actDescription.errors}"/>
-        <div *ngIf="submitted && f.actDescription.errors" class="invalid-feedback">
-            <div *ngIf="f.actDescription.errors.required">Needs text if you want to submit</div>
-        </div>
+        <mat-form-field class="form_field" appearance="fill">
+            <mat-label for="actDescription">Activity Description: </mat-label>
+            <textarea matInput cdkTextareaAutosize formControlName="actDescription"></textarea>
+            <mat-error *ngIf="f.actDescription.errors.required">Needs text if you want to submit</mat-error>
+        </mat-form-field>
     </div>
     <div class="form-group">
-        <button class="btn btn-primary">
+        <button mat-raised-button class="btn btn-primary">
             Submit
         </button>
     </div>
 </form>
 
-<button (click)="goBack()">Cancel</button>
+<button mat-raised-button  (click)="goBack()">Cancel</button>
