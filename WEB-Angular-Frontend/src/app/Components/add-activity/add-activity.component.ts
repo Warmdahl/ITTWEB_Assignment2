@@ -48,7 +48,7 @@ export class AddActivityComponent implements OnInit {
     const username = this.authService.UserNameFromToken();
 
     this.userService.postActivityUserWok(username, workoutId, this.f.actDescription.value);
-    //this.location.back();
+    this.location.back();
   }
 
   //Method for go back btn

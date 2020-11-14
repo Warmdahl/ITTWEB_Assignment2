@@ -1,17 +1,38 @@
 <h1>Add Exercise to {{id}}</h1>
+
 <form [formGroup]="addExerciseForm" (ngSubmit)="addExerciseToWorkout()">
     <table class="form-group">
-        <tr><td>Name:</td> <td><input type="text" formControlName="ExName" class="form-control" />
-            <!--div *ngIf="f.ExName.errors.required && submitted" class="invalid-feedback">A name is required</div-->
-        </td></tr>
-        <tr><td>Description: </td><td><input type="text" formControlName="ExDescription" class="form-control"/></td></tr>
-        <tr><td>Number of sets: </td><td><input type="number" formControlName="ExNumSets" class="form-control"/></td></tr>
-        <tr><td>Time/Repetitions: </td><td><input type="number" formControlName="ExTimeRep" class="form-control"/></td></tr>
         
-        
+        <tr>
+            <mat-form-field appearance="standard">
+                <input matInput formControlName="ExName" placeholder="Name">
+                <mat-error *ngIf="f.ExName.errors.required">A name is required!</mat-error>
+            </mat-form-field>
+        </tr>
+
+        <tr>
+            <mat-form-field appearance="standard">
+                <input matInput formControlName="ExDescription" placeholder="Description">
+                <mat-error *ngIf="f.ExDescription.errors.required">A description is required!</mat-error>
+            </mat-form-field>
+        </tr>
+
+        <tr>
+            <mat-form-field appearance="standard">
+                <input matInput type="number" formControlName="ExNumSets" placeholder="Number of sets">
+                <mat-error *ngIf="f.ExNumSets.errors.required">A number of sets is required!</mat-error>
+            </mat-form-field>
+        </tr>
+    
+        <tr>
+            <mat-form-field appearance="standard">
+                <input matInput type="number" formControlName="ExTimeRep" placeholder="Time/Repetitions">
+                <mat-error *ngIf="f.ExTimeRep.errors.required">A number of time/repetitions is required!</mat-error>
+            </mat-form-field>
+        </tr>        
     </table>
-    <button (click)="cancel()">Cancel</button>
-    
-        <button class="btn btn-primary">Add Exercise to Workout</button>
-    
+
+    <button mat-raised-button  class="btn btn-primary">Add Exercise to Workout</button>
+    <button mat-raised-button  (click)="cancel()">Cancel</button>
+
 </form>
