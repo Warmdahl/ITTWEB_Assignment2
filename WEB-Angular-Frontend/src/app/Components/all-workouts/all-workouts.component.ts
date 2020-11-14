@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ApiUsersService } from 'src/app/Services/api-users.service';
 import { User } from 'src/app/Interfaces/user';
 import { Observable } from 'rxjs';
+import {MatInputModule} from '@angular/material/input'
 
 
 @Component({

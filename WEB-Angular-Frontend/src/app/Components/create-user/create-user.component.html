@@ -2,12 +2,17 @@
 
 <form [formGroup]="createUserForm" (ngSubmit)="goCreate()" >
     <div class="form-group">
-        <label for="username">Username: </label>
-        <input type="text" formControlName="username" class="form-control" [ngClass]="{'is-invalid': submitted && f.username.errors}"/>
+        <mat-form-field class="form_field" appearance="fill">
+            <mat-label >Username: </mat-label>
+            <input matInput type="text" placeholder="username" formControlName="username"/>
+            <mat-error *ngIf="f.username.errors.required">username is required></mat-error>
+        </mat-form-field>
+        
+        <!--input type="text" formControlName="username" class="form-control" [ngClass]="{'is-invalid': submitted && f.username.errors}"/>
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
             <div *ngIf="f.username.errors.required">username is required</div>
             <div *ngIf="f.username.errors.maxlength">username must be under 20 characters</div>
-        </div>
+        </div-->
     </div>
     <div class="form-group">
         <label for="password">Password: </label>

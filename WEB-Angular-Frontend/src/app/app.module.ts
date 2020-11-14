@@ -13,6 +13,9 @@ import { AddActivityComponent } from './Components/add-activity/add-activity.com
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor } from './Interceptors/JWT.interceptor';
 import { CreateUserComponent } from './Components/create-user/create-user.component'
+import { DemoMaterialModule} from './material-modules';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -29,12 +32,16 @@ import { CreateUserComponent } from './Components/create-user/create-user.compon
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DemoMaterialModule,
+    BrowserAnimationsModule,
+    
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
-    multi: true}
+    multi: true},
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } }
   ],
   bootstrap: [AppComponent]
 })
