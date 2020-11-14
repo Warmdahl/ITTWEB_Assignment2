@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./workout-details.component.css']
 })
 export class WorkoutDetailsComponent implements OnInit {
-
+  displayedColumns: string[] = ['name', 'description', 'numberofsets', 'timerep']
   public loggedIn: boolean
   workout: Workout
   public id=""
