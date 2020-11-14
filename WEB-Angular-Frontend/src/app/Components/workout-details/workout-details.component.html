@@ -2,28 +2,33 @@
 <div>
     <p>{{workout.name}}</p>
     <ul class="exercises">
-        <table class="WOtable">
+        <table mat-table [dataSource]="workout.exercises" class="WOtable">
             
-            <tr class="header">
-                <td>Name</td>
-                <td>Description</td>
-                <td>Number of sets</td>
-                <td>Time/Repetitions</td>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+
+            <tr mat-header-row class="header">
+                <td mat-header-cell>Name</td>
+                <td mat-header-cell>Description</td>
+                <td mat-header-cell>Number of sets</td>
+                <td mat-header-cell>Time/Repetitions</td>
             </tr>
 
-            <tr *ngFor="let exercise of workout.exercises">
-                <td>{{exercise.name}}</td>
-                <td>{{exercise.description}}</td>
-                <td>{{exercise.timerep}}</td>
-                <td>{{exercise.numbersets}}</td>
+            <tr mat-header-row *ngFor="let exercise of workout.exercises">
+                <td mat-header-cell>{{exercise.name}}</td>
+                <td mat-header-cell>{{exercise.description}}</td>
+                <td mat-header-cell>{{exercise.timerep}}</td>
+                <td mat-header-cell>{{exercise.numbersets}}</td>
             </tr>
         </table>
 
-        <div *ngIf="loggedIn==true">
+        <!--div *ngIf="loggedIn==true">
             <button (click)="addActivity()">Add Activity</button>
             <button (click)="addExercise()">Add Exercise</button>
             <button (click)="goBack()">Return</button>
-        </div>
+        </div-->
     </ul>
 </div>
 <div>

@@ -1,14 +1,26 @@
 <div>
-<h1>Workout List</h1>
+    <h1>Workout List</h1>
 </div>
 
 <ul class="workouts">
-    <li *ngFor="let workout of workoutList">
-        {{workout.name}}
-        <button *ngIf="loggedin==true" routerLink="/workoutdetail/{{workout._id}}">logget ind{{workout._id}}</button>
-    </li>
-    <div *ngIf="loggedin==true">
-        Workout Name: <input #workoutName/>
-        <button (click)="add(workoutName.value); workoutName.value='';"  >Add</button>
-    </div>
+    <mat-list *ngFor="let workout of workoutList">
+        <mat-list-item>
+            <mat-label>{{workout.name}}</mat-label>
+            <button mat-raised-button *ngIf="loggedin==true" routerLink="/workoutdetail/{{workout._id}}">See details for {{workout.name}}</button>
+        </mat-list-item>
+        
+    </mat-list>
 </ul>
+
+<div>
+    <form [formGroup]="addWorkoutForm" (ngSubmit)="add()">
+        <div *ngIf="loggedin==true">
+            <mat-form-field class="form_field" appearance="fill">
+                <mat-label for="workoutName">Workout Name</mat-label>
+                <input matInput type="text" formControlName="workoutName"/>
+            </mat-form-field>
+            <button mat-raised-button>Add</button>
+        </div>
+    </form>
+</div>
+    

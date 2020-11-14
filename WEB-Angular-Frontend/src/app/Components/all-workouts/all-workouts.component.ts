@@ -7,7 +7,7 @@ import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ApiUsersService } from 'src/app/Services/api-users.service';
 import { User } from 'src/app/Interfaces/user';
 import { Observable } from 'rxjs';
-import {MatInputModule} from '@angular/material/input'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input'
   styleUrls: ['./all-workouts.component.css']
 })
 export class AllWorkoutsComponent implements OnInit {
+  addWorkoutForm: FormGroup
   workoutList: Workout[]
   public activitiesList;
   loggedin = false
@@ -26,7 +27,8 @@ export class AllWorkoutsComponent implements OnInit {
     private location: Location,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private userService: ApiUsersService
+    private userService: ApiUsersService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,13 @@ export class AllWorkoutsComponent implements OnInit {
     }else{
       this.loggedin=false
     }
+    this.addWorkoutForm = this.formBuilder.group({
+      workoutName: ['', [Validators.required]]
+    })
+  }
+
+  get f(){
+    return this.addWorkoutForm.controls
   }
 
   getWorkouts(): void{
@@ -43,8 +52,14 @@ export class AllWorkoutsComponent implements OnInit {
       .subscribe(workouts => this.workoutList = workouts);
   }
 
-  add(name: String): void{
-    this.workoutService.createWorkout({name} as Workout)
+  add(): void{
+    //this.submitted = true;
+
+    // stop here if form is invalid
+    if(this.addWorkoutForm.invalid) {
+      return;
+    }
+    this.workoutService.createWorkout(this.f.workoutName.value as Workout)
     .subscribe(workout => {this.tempWorkout = workout;
     this.router.navigate(['workoutdetail/'+this.tempWorkout._id])})
     
