@@ -1,0 +1,7 @@
+
+<div *ngIf="loggedin==false">
+    <button mat-raised-button color="primary" routerLink='/login'>Login</button>
+</div>
+<div *ngIf="loggedin==true">
+    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+</div>

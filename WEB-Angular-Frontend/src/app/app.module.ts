@@ -15,7 +15,9 @@ import { JwtInterceptor } from './Interceptors/JWT.interceptor';
 import { CreateUserComponent } from './Components/create-user/create-user.component'
 import { DemoMaterialModule} from './material-modules';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LogbarComponent } from './Components/logbar/logbar.component'
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     WorkoutDetailsComponent,
     AddExerciseComponent,
     AddActivityComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    LogbarComponent
   ],
   imports: [
     BrowserModule,
