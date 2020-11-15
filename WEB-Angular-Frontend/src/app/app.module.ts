@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // NgModels
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // HTTP
 import { ReactiveFormsModule } from '@angular/forms';
+//import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -40,6 +41,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DemoMaterialModule,
     BrowserAnimationsModule,
     FlexLayoutModule
+    //HttpModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,

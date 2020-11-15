@@ -14,7 +14,7 @@ export class ApiUsersService {
   // Change to Heroku call later
   // When API is installed on Heroku
   // ***************************************//
-  private baseUserUrl = 'http://localhost:8080';
+  private baseUserUrl = 'https://backend-express-assignment2.herokuapp.com';
 
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'})};
 

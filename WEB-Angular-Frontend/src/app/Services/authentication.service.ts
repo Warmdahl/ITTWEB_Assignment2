@@ -4,7 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Injectable({providedIn: 'root'})
 
 export class AuthenticationService {
-  private baseUserUrl = 'http://localhost:8080/';
+  private baseUserUrl = 'https://backend-express-assignment2.herokuapp.com/';
+
 
   constructor(
     private http: HttpClient,
@@ -13,7 +14,7 @@ export class AuthenticationService {
   // Login method
     login(username, password) {
      console.log("test");
-     this.http.post<any>(`${this.baseUserUrl}users/userlogin`, {username, password})
+     this.http.post<any>(this.baseUserUrl+"users/userlogin", {username, password})
       .subscribe(response => {this.saveToken(response);
       console.log("test2");
       return true;
