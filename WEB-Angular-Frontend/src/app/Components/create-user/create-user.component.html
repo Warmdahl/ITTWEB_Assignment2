@@ -4,7 +4,7 @@
     </div>
 
     <div fxFlex class="secondcolumn">
-        <form [formGroup]="createUserForm">
+        <form [formGroup]="createUserForm" (ngSubmit)="goCreate()">
             <div class="form-group">
                 <mat-form-field class="form_field" appearance="fill">
                     <mat-label for="username">Username: </mat-label>
@@ -20,16 +20,16 @@
                     <mat-error *ngIf="f.password.errors.required">Password required</mat-error>
                 </mat-form-field>
             </div>
+
+            <div class="form-group">
+                <button mat-raised-button class="btn btn-primary">Create</button>
+            </div>
         </form>
     </div>
 
     <div fxFlex="20" class="thirdcolumn">
-        <div class="form-group">
-            <button mat-raised-button class="btn btn-primary" (click)="goCreate()">Create</button>
-        </div>
         <button mat-raised-button (click)="goBack()">Cancel</button>
     </div>
-
 </div>
 
 

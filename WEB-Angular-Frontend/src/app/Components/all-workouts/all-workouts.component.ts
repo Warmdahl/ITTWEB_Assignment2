@@ -64,9 +64,4 @@ export class AllWorkoutsComponent implements OnInit {
     // this.router.navigate(['workoutdetail/'+this.tempWorkout._id])})
 
   }
-
-  gotoWO(){
-
-  }
-
 }

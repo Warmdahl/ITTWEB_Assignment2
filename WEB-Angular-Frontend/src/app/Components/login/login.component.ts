@@ -22,43 +22,43 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
-  //What happens when cancel btn is pressed
+  // What happens when cancel btn is pressed
   goBack(): void {
     this.location.back();
   }
 
-  //Method for easier form access
+  // Method for easier form access
   get f() {return this.loginForm.controls; }
 
-  //What happens when login btn is pressed
+  // What happens when login btn is pressed
   login(): void {
     this.submitted = true;
 
     // stop here if form is invalid
-    if(this.loginForm.invalid) {
+    if (this.loginForm.invalid) {
       return;
     }
 
-    this.authService.login(this.f.username.value, this.f.password.value)  
+    this.authService.login(this.f.username.value, this.f.password.value);
     this.router.navigate(['']);
   }
 
-  //Method for logout
+  // Method for logout
   logout(): void {
     this.authService.logout();
     this.router.navigate(['']);
   }
 
-  //Method to route to createuser 
-  //Should only be seen if no user is logged in, but in case
+  // Method to route to createuser
+  // Should only be seen if no user is logged in, but in case
   createUser(): void {
-    //If a user is logged in, redirect to front page
-    if(this.loggedIn == true){
-      this.router.navigate([''])
+    // If a user is logged in, redirect to front page
+    if (this.loggedIn == true){
+      this.router.navigate(['']);
     }
-    //If no user logged in, redirect to create user
+    // If no user logged in, redirect to create user
     else{
-      this.router.navigate(['/createuser'])
+      this.router.navigate(['/createuser']);
     }
   }
 
