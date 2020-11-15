@@ -7,3 +7,18 @@ table, tr {
     margin: 10px;
 
 }
+
+.firstcolumn {
+    background-color: lightseagreen;
+    text-align: center;
+}
+
+.secondcolumn {
+    background-color: teal;
+    text-align: center;
+}
+
+.form-group {
+    margin-left: auto;
+    margin-right: auto;
+}

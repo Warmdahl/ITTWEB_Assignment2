@@ -1,45 +1,49 @@
-<h1>Workout details</h1>
-<div>
-    <p>{{workout.name}}</p>
-    <ul class="exercises">
-        <table mat-table [dataSource]="workout.exercises" class="WOtable">
-            
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef>Name</th>
-                <td mat-cell *matCellDef="let exercise">{{exercise.name}}</td>
-            </ng-container>
+<div fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxFlex="20" class="firstcolumn">
+        <h1>Workout details</h1>
+    </div>
+    <div fxFlex class="secondcolumn">
+        <p>{{workout.name}}</p>
+        <ul class="exercises">
+            <table mat-table [dataSource]="workout.exercises" class="WOtable">
+                
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cell *matCellDef="let exercise">{{exercise.name}}</td>
+                </ng-container>
 
-            <ng-container matColumnDef="description">
-                <th mat-header-cell *matHeaderCellDef>Description</th>
-                <td mat-cell *matCellDef="let exercise">{{exercise.description}}</td>
-            </ng-container>
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef>Description</th>
+                    <td mat-cell *matCellDef="let exercise">{{exercise.description}}</td>
+                </ng-container>
 
-            <ng-container matColumnDef="numberofsets">
-                <th mat-header-cell *matHeaderCellDef>Number of sets</th>
-                <td mat-cell *matCellDef="let exercise">{{exercise.numbersets}}</td>
-            </ng-container>
+                <ng-container matColumnDef="numberofsets">
+                    <th mat-header-cell *matHeaderCellDef>Number of sets</th>
+                    <td mat-cell *matCellDef="let exercise">{{exercise.numbersets}}</td>
+                </ng-container>
 
-            <ng-container matColumnDef="timerep">
-                <th mat-header-cell *matHeaderCellDef>Time/repetitions</th>
-                <td mat-cell *matCellDef="let exercise">{{exercise.timerep}}</td>
-            </ng-container>
+                <ng-container matColumnDef="timerep">
+                    <th mat-header-cell *matHeaderCellDef>Time/repetitions</th>
+                    <td mat-cell *matCellDef="let exercise">{{exercise.timerep}}</td>
+                </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
 
-        <div *ngIf="loggedIn==true">
-            <button mat-raised-button (click)="addActivity()">Add Activity</button>
-            <button mat-raised-button (click)="addExercise()">Add Exercise</button>
-            <button mat-raised-button (click)="goBack()">Return</button>
-        </div>
-    </ul>
-</div>
-<div>
-    <ul class="activities">
-        <mat-list *ngFor="let activity of activitiesList">
-            <mat-icon matListIcon >short_text</mat-icon>
-            <mat-line role="listitem">{{activity.actDate}} {{activity.actDescription}}</mat-line>
-        </mat-list>
-    </ul>
+            <div *ngIf="loggedIn==true">
+                <button mat-raised-button (click)="addActivity()">Add Activity</button>
+                <button mat-raised-button (click)="addExercise()">Add Exercise</button>
+                <button mat-raised-button (click)="goBack()">Return</button>
+            </div>
+        </ul>
+    </div>
+    <div fxFlex class="thirdcolumn">
+        <ul class="activities">
+            <mat-list *ngFor="let activity of activitiesList">
+                <mat-icon matListIcon >short_text</mat-icon>
+                <mat-line role="listitem">{{activity.actDate}} {{activity.actDescription}}</mat-line>
+            </mat-list>
+        </ul>
+    </div>
 </div>

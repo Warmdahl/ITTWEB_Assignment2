@@ -1,38 +1,44 @@
-<h1>Add Exercise to {{id}}</h1>
+<div fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxFlex="20" class="firstcolumn">
+        <h1>Add Exercise to {{id}}</h1>
+    </div>
 
-<form [formGroup]="addExerciseForm" (ngSubmit)="addExerciseToWorkout()">
-    <table class="form-group">
-        
-        <tr>
-            <mat-form-field appearance="standard">
-                <input matInput formControlName="ExName" placeholder="Name">
-                <mat-error *ngIf="f.ExName.errors.required">A name is required!</mat-error>
-            </mat-form-field>
-        </tr>
+    <div fxFlex class="secondcolumn">
+        <form [formGroup]="addExerciseForm" (ngSubmit)="addExerciseToWorkout()">
+            <table class="form-group">
+                
+                <tr>
+                    <mat-form-field appearance="standard">
+                        <input matInput formControlName="ExName" placeholder="Name">
+                        <mat-error *ngIf="f.ExName.errors.required">A name is required!</mat-error>
+                    </mat-form-field>
+                </tr>
 
-        <tr>
-            <mat-form-field appearance="standard">
-                <input matInput formControlName="ExDescription" placeholder="Description">
-                <mat-error *ngIf="f.ExDescription.errors.required">A description is required!</mat-error>
-            </mat-form-field>
-        </tr>
+                <tr>
+                    <mat-form-field appearance="standard">
+                        <input matInput formControlName="ExDescription" placeholder="Description">
+                        <mat-error *ngIf="f.ExDescription.errors.required">A description is required!</mat-error>
+                    </mat-form-field>
+                </tr>
 
-        <tr>
-            <mat-form-field appearance="standard">
-                <input matInput type="number" formControlName="ExNumSets" placeholder="Number of sets">
-                <mat-error *ngIf="f.ExNumSets.errors.required">A number of sets is required!</mat-error>
-            </mat-form-field>
-        </tr>
-    
-        <tr>
-            <mat-form-field appearance="standard">
-                <input matInput type="number" formControlName="ExTimeRep" placeholder="Time/Repetitions">
-                <mat-error *ngIf="f.ExTimeRep.errors.required">A number of time/repetitions is required!</mat-error>
-            </mat-form-field>
-        </tr>        
-    </table>
+                <tr>
+                    <mat-form-field appearance="standard">
+                        <input matInput type="number" formControlName="ExNumSets" placeholder="Number of sets">
+                        <mat-error *ngIf="f.ExNumSets.errors.required">A number of sets is required!</mat-error>
+                    </mat-form-field>
+                </tr>
+            
+                <tr>
+                    <mat-form-field appearance="standard">
+                        <input matInput type="number" formControlName="ExTimeRep" placeholder="Time/Repetitions">
+                        <mat-error *ngIf="f.ExTimeRep.errors.required">A number of time/repetitions is required!</mat-error>
+                    </mat-form-field>
+                </tr>        
+            </table>
 
-    <button mat-raised-button  class="btn btn-primary">Add Exercise to Workout</button>
-    <button mat-raised-button  (click)="cancel()">Cancel</button>
+            <button mat-raised-button  class="btn btn-primary">Add Exercise to Workout</button>
+            <button mat-raised-button  (click)="cancel()">Cancel</button>
 
-</form>
+        </form>
+    </div>  
+</div>

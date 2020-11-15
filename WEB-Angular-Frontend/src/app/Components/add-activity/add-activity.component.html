@@ -1,21 +1,26 @@
-<h2>Add an activity to the workout</h2>
-
-<form [formGroup]="activityForm" >
-    <div class="form-group">
-        <mat-form-field class="form_field" appearance="fill">
-            <mat-label for="actDescription">Activity Description: </mat-label>
-            <textarea matInput cdkTextareaAutosize formControlName="actDescription"></textarea>
-            <mat-error *ngIf="f.actDescription.errors.required">Needs text if you want to submit</mat-error>
-        </mat-form-field>
+<div fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxFlex="20" class="firstcolumn">
+        <h2 class="centertext">Add an activity to the workout</h2>
     </div>
-    <div class="form-group">
-        <button mat-raised-button (click)="goSubmit()" class="btn btn-primary">
-            Submit
-        </button>
-        <button mat-raised-button  (click)="goBack()">
-            Cancel
-        </button>
+    <div fxFlex class="secondcolumn">
+        <form [formGroup]="activityForm" >
+            <div class="form-group">
+                <mat-form-field class="form_field" appearance="fill">
+                    <mat-label for="actDescription">Activity Description: </mat-label>
+                    <textarea matInput cdkTextareaAutosize formControlName="actDescription"></textarea>
+                    <mat-error *ngIf="f.actDescription.errors.required">Needs text if you want to submit</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <button mat-raised-button (click)="goSubmit()" class="btn btn-primary">
+                    Submit
+                </button>
+                <button mat-raised-button  (click)="goBack()">
+                    Cancel
+                </button>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 
 
