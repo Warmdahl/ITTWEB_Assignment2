@@ -1,8 +1,11 @@
-<h1>{{title}}</h1>
 
-<app-logbar></app-logbar>
-<!--Logout-->
+<div fxLayout="row" fxLayoutAlign="space-around none" class="parent">
+    <div fxFlex="60" class="left">
+        <h1 class="headercenter">{{title}}</h1>
+    </div>
+    <div fxFlex="40" class="center">
+        <app-logbar></app-logbar>
+    </div>
+</div>
 
 <router-outlet></router-outlet>
-<!--<app-all-workouts></app-all-workouts>-->
-<!--<app-login></app-login>-->

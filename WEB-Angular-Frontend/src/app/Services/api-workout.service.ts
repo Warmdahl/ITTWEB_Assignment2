@@ -23,12 +23,10 @@ export class ApiWorkoutService {
     );
   }
 
-  createWorkout(workout: Workout): Observable<Workout> {
-    return this.http.post<Workout>(this.apiurl+"/createworkout", workout, this.httpOptions)
-    .pipe(
-      
-      catchError(this.handleError<Workout>('createWorkout'))
-    );
+  createWorkout(name: String) {
+    console.log(name);
+    this.http.post<any>(`${this.apiurl}/createworkout`, {name})
+    .subscribe(response => console.log(response))
   }
   
   getWorkout(id: String): Observable<Workout> {

@@ -110,7 +110,6 @@ module.exports.getActivitesUserWok = async function(req, res){
     if(user && workout){
         var activities = [];
         user.activities.forEach(activity => {
-            console.log("user activity: " + activity);
             if(activity.workoutId == workout._id){
                 activities.push(activity);
             }

@@ -59,9 +59,9 @@ export class AllWorkoutsComponent implements OnInit {
     if(this.addWorkoutForm.invalid) {
       return;
     }
-    this.workoutService.createWorkout(this.f.workoutName.value as Workout)
-    .subscribe(workout => {this.tempWorkout = workout;
-    this.router.navigate(['workoutdetail/'+this.tempWorkout._id])})
+    this.workoutService.createWorkout(this.f.workoutName.value)
+    //.subscribe(workout => {this.tempWorkout = workout;
+    //this.router.navigate(['workoutdetail/'+this.tempWorkout._id])})
     
   }
 

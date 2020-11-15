@@ -13,12 +13,14 @@ module.exports.workoutList = async function(req, res){
 
 //Create workoutprogram
 module.exports.createworkout = async function(req, res) {
+    console.log(req.body.name)
     var workout = await WorkoutList.create({name: req.body.name}).catch(reason => res.render("error", reason));
-    //if(workout){
-    //    res.redirect('//localhost:8080/workouts/workoutlist')
-    //}
-    console.log(workout.name);
-    res.send(workout);
+    if(workout){
+        res.json(workout);
+    }else{
+        res.status(403).json({"Message" : "Workout was not created"})
+    }
+    
 }
 
 //Create Exercise

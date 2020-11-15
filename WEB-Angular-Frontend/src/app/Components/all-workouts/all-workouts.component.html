@@ -1,26 +1,29 @@
-<div>
-    <h1>Workout List</h1>
-</div>
+<div fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxFlex="20" class="firstcolumn">
+        <h1 class="textcenter">Workout List</h1>
+    </div>
 
-<ul class="workouts">
-    <mat-list *ngFor="let workout of workoutList">
-        <mat-list-item>
-            <mat-label>{{workout.name}}</mat-label>
-            <button mat-raised-button *ngIf="loggedin==true" routerLink="/workoutdetail/{{workout._id}}">See details for {{workout.name}}</button>
-        </mat-list-item>
-        
-    </mat-list>
-</ul>
+    <div fxFlex class="secondcolumn">
+        <ul class="workouts">
+            <mat-list *ngFor="let workout of workoutList">
+                <mat-list-item>
+                    <mat-label>{{workout.name}}: </mat-label>
+                    <button mat-raised-button *ngIf="loggedin==true" routerLink="/workoutdetail/{{workout._id}}">See details for {{workout.name}}</button>
+                </mat-list-item>   
+            </mat-list>
+        </ul>
+    </div>
 
-<div>
-    <form [formGroup]="addWorkoutForm" (ngSubmit)="add()">
-        <div *ngIf="loggedin==true">
-            <mat-form-field class="form_field" appearance="fill">
-                <mat-label for="workoutName">Workout Name</mat-label>
-                <input matInput type="text" formControlName="workoutName"/>
-            </mat-form-field>
-            <button mat-raised-button>Add</button>
-        </div>
-    </form>
+    <div fxFlex="20" class="thirdcolumn">
+        <form [formGroup]="addWorkoutForm" (ngSubmit)="add()">
+            <div *ngIf="loggedin==true">
+                <mat-form-field class="form_field" appearance="fill">
+                    <mat-label for="workoutName">Workout Name</mat-label>
+                    <input matInput type="text" formControlName="workoutName"/>
+                </mat-form-field>
+                <button mat-raised-button>Add</button>
+            </div>
+        </form>
+    </div>
 </div>
     
