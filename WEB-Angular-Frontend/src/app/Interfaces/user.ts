@@ -5,5 +5,5 @@ export interface User {
     token: string;
     activities: [{  actDate: Date,
                     actDescription: string,
-                    workoutId: string}]
+                    workoutId: string}];
 }

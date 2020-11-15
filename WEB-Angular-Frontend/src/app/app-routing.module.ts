@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'workoutdetail/:id', component: WorkoutDetailsComponent},
   {path: 'createuser', component: CreateUserComponent}
-]
+];
 
 @NgModule({
   declarations: [],

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logbar',
@@ -20,10 +20,10 @@ export class LogbarComponent implements OnInit {
   }
 
   isLoggedIn(){
-    if(this.authenticationService.isLoggedIn()){
-      this.loggedin=true
+    if (this.authenticationService.isLoggedIn()){
+      this.loggedin = true;
     }else{
-      this.loggedin=false
+      this.loggedin = false;
     }
   }
 
@@ -32,7 +32,7 @@ export class LogbarComponent implements OnInit {
     this.isLoggedIn();
   }
 
-  //Method for logout
+  // Method for logout
   logout(): void {
     this.authenticationService.logout();
     this.router.navigate(['']);

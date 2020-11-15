@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiWorkoutService } from '../../Services/api-workout.service';
-import { Workout } from '../../Interfaces/workout'
-import {Location} from '@angular/common'
-import {Router} from '@angular/router'
+import { Workout } from '../../Interfaces/workout';
+import {Location} from '@angular/common';
+import {Router} from '@angular/router';
 import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { ApiUsersService } from 'src/app/Services/api-users.service';
 import { User } from 'src/app/Interfaces/user';
@@ -16,11 +16,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./all-workouts.component.css']
 })
 export class AllWorkoutsComponent implements OnInit {
-  addWorkoutForm: FormGroup
-  workoutList: Workout[]
+  addWorkoutForm: FormGroup;
+  workoutList: Workout[];
   public activitiesList;
-  loggedin = false
-  tempWorkout: Workout
+  loggedin = false;
+  tempWorkout: Workout;
 
   constructor(
     private workoutService: ApiWorkoutService,
@@ -33,18 +33,18 @@ export class AllWorkoutsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWorkouts();
-    if(this.authenticationService.isLoggedIn()){
-      this.loggedin=true
+    if (this.authenticationService.isLoggedIn()){
+      this.loggedin = true;
     }else{
-      this.loggedin=false
+      this.loggedin = false;
     }
     this.addWorkoutForm = this.formBuilder.group({
       workoutName: ['', [Validators.required]]
-    })
+    });
   }
 
   get f(){
-    return this.addWorkoutForm.controls
+    return this.addWorkoutForm.controls;
   }
 
   getWorkouts(): void{
@@ -53,16 +53,16 @@ export class AllWorkoutsComponent implements OnInit {
   }
 
   add(): void{
-    //this.submitted = true;
+    // this.submitted = true;
 
     // stop here if form is invalid
-    if(this.addWorkoutForm.invalid) {
+    if (this.addWorkoutForm.invalid) {
       return;
     }
-    this.workoutService.createWorkout(this.f.workoutName.value)
-    //.subscribe(workout => {this.tempWorkout = workout;
-    //this.router.navigate(['workoutdetail/'+this.tempWorkout._id])})
-    
+    this.workoutService.createWorkout(this.f.workoutName.value);
+    // .subscribe(workout => {this.tempWorkout = workout;
+    // this.router.navigate(['workoutdetail/'+this.tempWorkout._id])})
+
   }
 
   gotoWO(){

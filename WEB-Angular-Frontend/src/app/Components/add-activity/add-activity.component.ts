@@ -27,31 +27,31 @@ export class AddActivityComponent implements OnInit {
   ngOnInit(): void {
     this.activityForm = this.formBuilder.group({
       actDescription: ['', Validators.required]
-    })
+    });
   }
 
-  //easier access to formgroup controls values
-  get f() {return this.activityForm.controls;}
+  // easier access to formgroup controls values
+  get f() {return this.activityForm.controls; }
 
   goSubmit(): void {
     this.submitted = true;
 
-    //stop here if form is invalid
-    if(this.activityForm.invalid){
+    // stop here if form is invalid
+    if (this.activityForm.invalid){
       return;
     }
 
-    //Getting workout id from url
-    const workoutId: String = this.route.snapshot.paramMap.get('id').toString()
+    // Getting workout id from url
+    const workoutId: String = this.route.snapshot.paramMap.get('id').toString();
 
-    //Getting username from token in localstorage (user logged in)
+    // Getting username from token in localstorage (user logged in)
     const username = this.authService.UserNameFromToken();
 
     this.userService.postActivityUserWok(username, workoutId, this.f.actDescription.value);
     this.location.back();
   }
 
-  //Method for go back btn
+  // Method for go back btn
   goBack(): void {
     this.location.back();
   }

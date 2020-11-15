@@ -1,33 +1,40 @@
-<h2>Login</h2>
-
-<form [formGroup]="loginForm" >
+<div fxLayout="column" fxLayoutAlign="center stretch">
     
-    <p>
-        <mat-form-field appearance="standard">
-            <input matInput type="text" formControlName="username" placeholder="Username" [ngClass]="{'is-invalid': submitted && f.username.errors}">
-        </mat-form-field>
-    </p>
-    
-    <p>
-        <mat-form-field appearance="standard">
-            <input matInput type="password" formControlName="password" placeholder="Password" [ngClass]="{'is-invalid': submitted && f.password.errors}">
-        </mat-form-field>
-    </p>
-
-    <div class="form-group">
-        <button mat-raised-button (click)="login()" class="btn btn-primary">
-            Login
-        </button>
-        <button mat-raised-button (click)="goBack()">
-            Go back
-        </button>
+    <div fxFlex="20" class="firstcolumn">
+        <h2>Login</h2>
     </div>
-</form>
 
+    <div fxFlex class="secondcolumn">
+        <form [formGroup]="loginForm" >
+            <p>
+                <mat-form-field appearance="standard">
+                    <input matInput type="text" formControlName="username" placeholder="Username" [ngClass]="{'is-invalid': submitted && f.username.errors}">
+                </mat-form-field>
+            </p>
+            
+            <p>
+                <mat-form-field appearance="standard">
+                    <input matInput type="password" formControlName="password" placeholder="Password" [ngClass]="{'is-invalid': submitted && f.password.errors}">
+                </mat-form-field>
+            </p>
 
-<div *ngIf="loggedIn==false">
-    <button mat-raised-button (click)="createUser()">
-        Create new user
-    </button>
+            <div class="form-group">
+                <button mat-raised-button (click)="login()" class="btn btn-primary">
+                    Login
+                </button>
+                <button mat-raised-button (click)="goBack()">
+                    Go back
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div fxFlex="20" class="thirdcolumn">
+        <div *ngIf="loggedIn==false">
+            <button mat-raised-button (click)="createUser()">
+                Create new user
+            </button>
+        </div>
+    </div>
+
 </div>
-

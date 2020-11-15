@@ -1,0 +1,17 @@
+
+.firstcolumn {
+    background-color: lightseagreen;
+    text-align: center;
+}
+.secondcolumn {
+    background-color: teal;
+    text-align: center;
+}
+.thirdcolumn {
+    background-color: lightseagreen;
+    text-align: center;
+}
+
+button{
+    margin: 10px;
+}

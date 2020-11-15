@@ -24,26 +24,26 @@ export class CreateUserComponent implements OnInit {
     this.createUserForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(5)]]
-    })
+    });
   }
 
-  //Method for cancel createuser
+  // Method for cancel createuser
   goBack(): void {
     this.location.back();
   }
 
-  //easier access to form values
-  get f() {return this.createUserForm.controls;}
+  // easier access to form values
+  get f() {return this.createUserForm.controls; }
 
   goCreate(): void {
     this.submitted = true;
 
     // stop here if form is invalid
-    if(this.createUserForm.invalid) {
+    if (this.createUserForm.invalid) {
       return;
     }
 
-    this.userService.addUser(this.f.username.value, this.f.password.value)  
+    this.userService.addUser(this.f.username.value, this.f.password.value);
     this.router.navigate(['']);
   }
 

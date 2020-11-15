@@ -1,29 +1,37 @@
-<h2>Create new User</h2>
-
-<form [formGroup]="createUserForm" (ngSubmit)="goCreate()" >
-    <div class="form-group">
-        <mat-form-field class="form_field" appearance="fill">
-            <mat-label for="username">Username: </mat-label>
-            <input matInput type="text" formControlName="username"/>
-            <mat-error *ngIf="f.username.errors.required">username is required></mat-error>
-        </mat-form-field>
+<div fxLayout="column" fxLayoutAlign="center stretch">
+    <div fxFlex="20" class="firstcolumn">
+        <h2>Create new User</h2>
     </div>
 
-    <div class="form-group">
-        <mat-form-field class="form_field" appearance="fill">
-            <mat-label for="password">Password</mat-label>
-            <input matInput type="text"  formControlName="password">
-            <mat-error *ngIf="f.password.errors.required">Password required</mat-error>
-        </mat-form-field>
+    <div fxFlex class="secondcolumn">
+        <form [formGroup]="createUserForm">
+            <div class="form-group">
+                <mat-form-field class="form_field" appearance="fill">
+                    <mat-label for="username">Username: </mat-label>
+                    <input matInput type="text" formControlName="username"/>
+                    <mat-error *ngIf="f.username.errors.required">username is required></mat-error>
+                </mat-form-field>
+            </div>
+        
+            <div class="form-group">
+                <mat-form-field class="form_field" appearance="fill">
+                    <mat-label for="password">Password</mat-label>
+                    <input matInput type="text"  formControlName="password">
+                    <mat-error *ngIf="f.password.errors.required">Password required</mat-error>
+                </mat-form-field>
+            </div>
+        </form>
     </div>
 
-    <button mat-raised-button (click)="goBack()">Cancel</button>
-    
-    <div class="form-group">
-        <button mat-raised-button class="btn btn-primary">
-            Create
-        </button>
+    <div fxFlex="20" class="thirdcolumn">
+        <div class="form-group">
+            <button mat-raised-button class="btn btn-primary" (click)="goCreate()">Create</button>
+        </div>
+        <button mat-raised-button (click)="goBack()">Cancel</button>
     </div>
-</form>
+
+</div>
+
+
 
 

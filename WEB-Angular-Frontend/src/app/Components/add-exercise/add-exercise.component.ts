@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiWorkoutService } from 'src/app/Services/api-workout.service';
-import {FormGroup, FormBuilder, Validators } from '@angular/forms'
+import {FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-exercise',
@@ -10,8 +10,8 @@ import {FormGroup, FormBuilder, Validators } from '@angular/forms'
   styleUrls: ['./add-exercise.component.css']
 })
 export class AddExerciseComponent implements OnInit {
-  addExerciseForm: FormGroup
-  id: String
+  addExerciseForm: FormGroup;
+  id: String;
   constructor(
     private route: ActivatedRoute,
     private location: Location,
@@ -21,17 +21,17 @@ export class AddExerciseComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id').toString()
+    this.id = this.route.snapshot.paramMap.get('id').toString();
     this.addExerciseForm = this.formBuilder.group({
       ExName: ['', [Validators.required]],
-      ExDescription: ['',[Validators.required]],
-      ExNumSets: ['',[Validators.required]],
-      ExTimeRep: ['',[Validators.required]]
-    })
+      ExDescription: ['', [Validators.required]],
+      ExNumSets: ['', [Validators.required]],
+      ExTimeRep: ['', [Validators.required]]
+    });
   }
 
   get f(){
-    return this.addExerciseForm.controls
+    return this.addExerciseForm.controls;
   }
 
   cancel(): void {
@@ -39,12 +39,12 @@ export class AddExerciseComponent implements OnInit {
   }
 
   addExerciseToWorkout(): void {
-    if(this.addExerciseForm.invalid){
-      return
+    if (this.addExerciseForm.invalid){
+      return;
     }
 
-    this.workoutService.addExercise(this.f.ExName.value, this.f.ExDescription.value, this.f.ExNumSets.value, this.f.ExTimeRep.value, this.id)  
-    this.location.back()
+    this.workoutService.addExercise(this.f.ExName.value, this.f.ExDescription.value, this.f.ExNumSets.value, this.f.ExTimeRep.value, this.id);
+    this.location.back();
   }
 
 }

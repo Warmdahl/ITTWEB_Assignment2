@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; //NgModels
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; //HTTP
+import { FormsModule } from '@angular/forms'; // NgModels
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // HTTP
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -12,11 +12,11 @@ import { AddExerciseComponent } from './Components/add-exercise/add-exercise.com
 import { AddActivityComponent } from './Components/add-activity/add-activity.component';
 import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor } from './Interceptors/JWT.interceptor';
-import { CreateUserComponent } from './Components/create-user/create-user.component'
+import { CreateUserComponent } from './Components/create-user/create-user.component';
 import { DemoMaterialModule} from './material-modules';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field'
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LogbarComponent } from './Components/logbar/logbar.component'
+import { LogbarComponent } from './Components/logbar/logbar.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { FlexLayoutModule } from '@angular/flex-layout';
 

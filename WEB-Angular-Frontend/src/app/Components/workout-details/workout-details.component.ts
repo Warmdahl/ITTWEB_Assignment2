@@ -12,10 +12,10 @@ import { Location } from '@angular/common';
   styleUrls: ['./workout-details.component.css']
 })
 export class WorkoutDetailsComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'description', 'numberofsets', 'timerep']
-  public loggedIn: boolean
-  workout: Workout
-  public id=""
+  displayedColumns: string[] = ['name', 'description', 'numberofsets', 'timerep'];
+  public loggedIn: boolean;
+  workout: Workout;
+  public id = "";
   public activitiesList;
 
   constructor(
@@ -28,41 +28,41 @@ export class WorkoutDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getWorkout()
-    this.loggedIn = this.authenticationService.isLoggedIn()
+    this.getWorkout();
+    this.loggedIn = this.authenticationService.isLoggedIn();
 
     this.getActivitiesforUser();
   }
 
-  //Method for getting the exercises mapped to a workout
+  // Method for getting the exercises mapped to a workout
   getWorkout(): void{
-    const id: String = this.route.snapshot.paramMap.get('id').toString()
+    const id: String = this.route.snapshot.paramMap.get('id').toString();
     this.workoutService.getWorkout(id)
-    .subscribe(workout => this.workout = workout)
+    .subscribe(workout => this.workout = workout);
   }
 
-  //Method for getting the activities specific for a user in a workout
+  // Method for getting the activities specific for a user in a workout
   getActivitiesforUser() {
-    const wokid: String = this.route.snapshot.paramMap.get('id').toString()
+    const wokid: String = this.route.snapshot.paramMap.get('id').toString();
     console.log(wokid);
 
     const username = this.authenticationService.UserNameFromToken();
 
     this.userService.getActivitiesUserWok(username, wokid)
-      .subscribe(response => this.activitiesList = response)
+      .subscribe(response => this.activitiesList = response);
   }
 
-  //Method for redirect to add exercise component
+  // Method for redirect to add exercise component
   addExercise(): void {
-    this.router.navigate(['addexercise/'+this.workout._id])
+    this.router.navigate(['addexercise/' + this.workout._id]);
   }
 
-  //Method for redirect to add activity component
+  // Method for redirect to add activity component
   addActivity(): void {
-    this.router.navigate(['addactivity/'+this.workout._id])
+    this.router.navigate(['addactivity/' + this.workout._id]);
   }
 
-  //Method for go back btn
+  // Method for go back btn
   goBack(): void {
     this.location.back();
   }

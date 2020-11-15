@@ -9,14 +9,14 @@ import {Observable, of} from 'rxjs';
 })
 export class ApiWorkoutService {
 
-  private apiurl = 'http://localhost:8080/workouts'
-  //private apiurl = 'https://backend-express-assignment2.herokuapp.com/workouts/workoutlist'
+  private apiurl = 'http://localhost:8080/workouts';
+  // private apiurl = 'https://backend-express-assignment2.herokuapp.com/workouts/workoutlist'
   constructor(
     private http: HttpClient
   ) { }
 
   getWorkoutList(): Observable<Workout[]> {
-    return this.http.get<any>(this.apiurl+"/workoutlist")
+    return this.http.get<any>(this.apiurl + "/workoutlist")
     .pipe(
       tap(_ => console.log("WorkoutList fetched")),
       catchError(this.handleError<Workout[]>('getWorkoutList', []))
@@ -26,20 +26,20 @@ export class ApiWorkoutService {
   createWorkout(name: String) {
     console.log(name);
     this.http.post<any>(`${this.apiurl}/createworkout`, {name})
-    .subscribe(response => console.log(response))
+    .subscribe(response => console.log(response));
   }
-  
+
   getWorkout(id: String): Observable<Workout> {
-    
-    return this.http.get<Workout>(this.apiurl+"/showexcinwok/"+id)
+
+    return this.http.get<Workout>(this.apiurl + "/showexcinwok/" + id)
     .pipe(
       catchError(this.handleError<Workout>('getWorkout'))
-    )
+    );
   }
 
   addExercise(name, description, numbersets, timerep, id){
-    this.http.post<any>(this.apiurl+"/createexercise/"+id, {name, description, numbersets, timerep})
-    .subscribe(response => {console.log(response)})
+    this.http.post<any>(this.apiurl + "/createexercise/" + id, {name, description, numbersets, timerep})
+    .subscribe(response => {console.log(response); });
   }
 
 
@@ -49,7 +49,7 @@ export class ApiWorkoutService {
       name,
       description,
       numbersets,
-      timerep 
+      timerep
     })
     return this.http.get<any>(`${this.apiurl}/showexcinwok/${id}`)
     //.pipe(catchError(this.handleError<any>('createxercise')))
@@ -58,15 +58,15 @@ export class ApiWorkoutService {
 
   httpOptions = {
     headers: new HttpHeaders({'contentType': 'application/json'})
-  }
+  };
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      //console.error(error);
+      // console.error(error);
 
-      //console.log(`${operation} failed: ${error.message}`);
+      // console.log(`${operation} failed: ${error.message}`);
 
       return of(result as T);
-    }
+    };
   }
 }
