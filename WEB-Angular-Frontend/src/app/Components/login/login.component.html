@@ -4,13 +4,13 @@
     
     <p>
         <mat-form-field appearance="standard">
-            <input matInput formControlName="username" placeholder="Username" [ngClass]="{'is-invalid': submitted && f.username.errors}">
+            <input matInput type="text" formControlName="username" placeholder="Username" [ngClass]="{'is-invalid': submitted && f.username.errors}">
         </mat-form-field>
     </p>
     
     <p>
         <mat-form-field appearance="standard">
-            <input matInput formControlName="password" placeholder="Password" [ngClass]="{'is-invalid': submitted && f.password.errors}">
+            <input matInput type="password" formControlName="password" placeholder="Password" [ngClass]="{'is-invalid': submitted && f.password.errors}">
         </mat-form-field>
     </p>
 

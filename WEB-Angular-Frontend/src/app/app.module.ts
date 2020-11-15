@@ -18,6 +18,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogbarComponent } from './Components/logbar/logbar.component'
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
     ReactiveFormsModule,
     DemoMaterialModule,
     BrowserAnimationsModule,
-    
+    FlexLayoutModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
